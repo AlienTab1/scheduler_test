@@ -1,0 +1,5 @@
+udo dd if=image.raw.raw of=/dev/sda conv=fsync oflag=direct status=progress bs=4M
+
+pipx install git+https://github.com/systemd/mkosi.git
+
+
