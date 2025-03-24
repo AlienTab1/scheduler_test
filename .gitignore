@@ -1,2 +1,6 @@
 # image files #
 image.*
+
+####
+*mkosi.packages/*
+*tools/*
