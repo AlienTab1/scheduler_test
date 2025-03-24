@@ -2,4 +2,6 @@ udo dd if=image.raw.raw of=/dev/sda conv=fsync oflag=direct status=progress bs=4
 
 pipx install git+https://github.com/systemd/mkosi.git
 
+sudo apt install systemd-repart
 
+mkosi --output image.raw --qemu-smp 2 qemu --force
