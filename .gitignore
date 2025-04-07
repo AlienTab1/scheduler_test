@@ -1,6 +1,6 @@
 # image files #
 image.*
 
-####
-mkosi.packages/
-tools/
+# tmp dirs #
+mkosi.packages/*
+tools/*
