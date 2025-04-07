@@ -2,5 +2,5 @@
 image.*
 
 ####
-*mkosi.packages/*
-*tools/*
+mkosi.packages/
+tools/
