@@ -3,4 +3,4 @@ image.*
 
 # tmp dirs #
 */mkosi.packages/*
-*/tools/*
+*/mkosi.tools/*
