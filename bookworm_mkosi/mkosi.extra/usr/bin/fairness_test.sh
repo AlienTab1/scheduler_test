@@ -17,7 +17,7 @@ outputs=()
 #sysbench cpu run --threads=1 --time=10 --verbosity=1
 
 for ((i=0; i<$threads; i++)); do
-  echo "Starting sysbench on cpu: $i"
+  echo "Starting test on cpu: $i"
   {
     time taskset -c $1 hackbench -g 20 -l 100 -s 512 -f 25 --threads
   } > >(
@@ -27,7 +27,7 @@ for ((i=0; i<$threads; i++)); do
       out+="$row"$'\n'
       done
     outputs+=("$vystup")
-  ) &
+  ) 2>/dev/null &
  
 done
 
