@@ -39,7 +39,8 @@ echo "Hackbench completed."
 echo "Finishing perf sched record..."
 kill "$perf_sched_pid" 2>/dev/null
 
-# Generating perf sched latency analysis (for basic metrics)
-perf sched latency -i "$outputs_dir/perf_sched.data" > "$outputs_dir/perf_sched_latency.txt"
+# Generating perf sched trace in txt
+#perf sched latency -i "$outputs_dir/perf_sched.data" > "$outputs_dir/perf_sched_latency.txt"
+perf script -i $outputs_dir/perf_sched.data > $outputs_dir/perf_trace.txt
 
 echo "Scheduler fairness test completed."
