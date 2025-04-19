@@ -1,80 +1,45 @@
 #!/bin/bash
 
-#param="$1"
-#name="${param%%=*}"
-#value="${param#*=}"
-
-#echo "value " $value
-#echo "name " $name
-
-echo "Simple fairness test"
-
-threads=$(grep processor /proc/cpuinfo | wc -l)
-echo "Current CPU threads: " $threads 
-
-
-
+echo "Scheduler Fairness Test (hackbench with full perf logging)"
 
 outputs_dir="/tmp/outputs"
 mkdir -p "$outputs_dir"
 rm -f "$outputs_dir"/*
 
-pids=()
+# Get number of available thread
+threads=$(grep processor /proc/cpuinfo | wc -l)
+echo "Current CPU threads: " $threads 
 
-for ((i=0; i<$threads; i++)); do
-  echo "Starting test on CPU: $i"
-  
-  (
-  (time taskset -c "$i" hackbench -g 20 -l 100 -s 512 -f 25 --threads) > "$outputs_dir/output_$i.txt" 2>&1
-  ) &
-  
-  pids+=($!)
-done
+# Starting hackbench
+echo "Starting hackbench with 4 times more tasks as are available threads.."
+hackbench -g $(($threads/2)) -l 1000000 -s 512 -f 4 --threads &
+hackbench_parent_pid=$!
+echo "Parent PID hackbench: $hackbench_parent_pid"
 
-# Čekáme na všechny procesy
-for pid in "${pids[@]}"; do
-  wait "$pid"
-done
+sleep 1
 
+# Getting LWP IDs of hackbench threads
+thread_lwps=$(ps -L aux | grep "hackbench" | grep -v "grep" | awk '{print $3}')
+echo "Child LWP ID threads: $thread_lwps"
 
+# Saving LWP IDs of threads to a file
+echo "$thread_lwps" > "$outputs_dir/thread_lwps.txt"
 
+# Starting perf sched record for all processes
+echo "Starting perf sched record for all processes..."
+perf sched record -a -g -o "$outputs_dir/perf_sched.data" -- bash -c "wait $hackbench_parent_pid" &> "$outputs_dir/hackbench_output.log"
+perf_sched_pid=$!
 
+# Waiting for hackbench to complete
+wait "$hackbench_parent_pid"
 
+echo "Hackbench completed."
 
+# Finishing perf sched record
+echo "Finishing perf sched record..."
+kill "$perf_sched_pid" 2>/dev/null
 
+# Generating perf sched latency analysis (for basic metrics)
+perf sched latency -i "$outputs_dir/perf_sched.data" > "$outputs_dir/perf_sched_latency.txt"
 
-
-
-
-
-
-#sysbench cpu run --threads=1 --time=10 --verbosity=1
-
-#for ((i=0; i<$threads; i++)); do
-#  echo "Starting test on cpu: $i"
-#  {
-#    time taskset -c "$i" hackbench -g 20 -l 100 -s 512 -f 25 --threads
-#  } 2>&1 > >(
-#    # Tady čteme celý výstup najednou
-#    out=""
-#    while IFS= read -r row; do
-#      out+="$row"$'\n'
-#      done
-#    outputs+=("$vystup")
-#  ) &
-# 
-#done
-
-wait
-#sleep 7
-
-echo "Results:"
-for ((i=0; i<$threads; i++)); do
-  echo "CPU $i:"
-  #printf "%s\n" "${outputs[$i]}"
-  cat "$outputs_dir/output_$i.txt"
-  echo
-done
-
-
-rm -f "$outputs_dir"/*
+echo "Scheduler fairness test completed."

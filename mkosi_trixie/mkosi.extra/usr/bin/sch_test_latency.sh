@@ -7,7 +7,7 @@ value="${param#*=}"
 #echo "value " $value
 #echo "name " $name
 
-echo "Simple latency test"
+echo "Latency test"
 
 threads=$(grep processor /proc/cpuinfo | wc -l)
 echo "Current CPU threads: " $threads 

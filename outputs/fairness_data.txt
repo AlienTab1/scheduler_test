@@ -1,0 +1,330 @@
+PID: 654184
+  Total CPU Time: 6186 µs
+  Total Wait Time: 6507 µs
+  CPU Switches: 54
+
+PID: 654234
+  Total CPU Time: 6673 µs
+  Total Wait Time: 4646 µs
+  CPU Switches: 19
+
+PID: 654230
+  Total CPU Time: 5986 µs
+  Total Wait Time: 4521 µs
+  CPU Switches: 15
+
+PID: 654228
+  Total CPU Time: 5634 µs
+  Total Wait Time: 4443 µs
+  CPU Switches: 15
+
+PID: 654199
+  Total CPU Time: 10705 µs
+  Total Wait Time: 4545 µs
+  CPU Switches: 22
+
+PID: 654178
+  Total CPU Time: 4493 µs
+  Total Wait Time: 5602 µs
+  CPU Switches: 36
+
+PID: 654208
+  Total CPU Time: 4813 µs
+  Total Wait Time: 7115 µs
+  CPU Switches: 24
+
+PID: 654210
+  Total CPU Time: 6176 µs
+  Total Wait Time: 4972 µs
+  CPU Switches: 38
+
+PID: 654198
+  Total CPU Time: 11076 µs
+  Total Wait Time: 3979 µs
+  CPU Switches: 22
+
+PID: 654209
+  Total CPU Time: 3667 µs
+  Total Wait Time: 3556 µs
+  CPU Switches: 30
+
+PID: 654212
+  Total CPU Time: 6724 µs
+  Total Wait Time: 5552 µs
+  CPU Switches: 33
+
+PID: 654179
+  Total CPU Time: 4914 µs
+  Total Wait Time: 6354 µs
+  CPU Switches: 29
+
+PID: 654207
+  Total CPU Time: 5845 µs
+  Total Wait Time: 6703 µs
+  CPU Switches: 38
+
+PID: 654236
+  Total CPU Time: 6152 µs
+  Total Wait Time: 5114 µs
+  CPU Switches: 19
+
+PID: 654233
+  Total CPU Time: 5968 µs
+  Total Wait Time: 6691 µs
+  CPU Switches: 11
+
+PID: 654206
+  Total CPU Time: 4992 µs
+  Total Wait Time: 5865 µs
+  CPU Switches: 27
+
+PID: 654235
+  Total CPU Time: 6574 µs
+  Total Wait Time: 3445 µs
+  CPU Switches: 8
+
+PID: 654222
+  Total CPU Time: 7126 µs
+  Total Wait Time: 3764 µs
+  CPU Switches: 23
+
+PID: 654218
+  Total CPU Time: 6006 µs
+  Total Wait Time: 5134 µs
+  CPU Switches: 46
+
+PID: 654225
+  Total CPU Time: 6029 µs
+  Total Wait Time: 3125 µs
+  CPU Switches: 16
+
+PID: 654211
+  Total CPU Time: 6649 µs
+  Total Wait Time: 6033 µs
+  CPU Switches: 59
+
+PID: 654175
+  Total CPU Time: 4988 µs
+  Total Wait Time: 3293 µs
+  CPU Switches: 52
+
+PID: 654219
+  Total CPU Time: 4617 µs
+  Total Wait Time: 4840 µs
+  CPU Switches: 25
+
+PID: 654221
+  Total CPU Time: 4728 µs
+  Total Wait Time: 5994 µs
+  CPU Switches: 34
+
+PID: 654224
+  Total CPU Time: 8013 µs
+  Total Wait Time: 1956 µs
+  CPU Switches: 12
+
+PID: 654215
+  Total CPU Time: 6494 µs
+  Total Wait Time: 4770 µs
+  CPU Switches: 38
+
+PID: 654190
+  Total CPU Time: 6805 µs
+  Total Wait Time: 3962 µs
+  CPU Switches: 13
+
+PID: 654174
+  Total CPU Time: 5824 µs
+  Total Wait Time: 4736 µs
+  CPU Switches: 43
+
+PID: 654180
+  Total CPU Time: 5175 µs
+  Total Wait Time: 4532 µs
+  CPU Switches: 41
+
+PID: 654214
+  Total CPU Time: 3551 µs
+  Total Wait Time: 5398 µs
+  CPU Switches: 18
+
+PID: 654229
+  Total CPU Time: 7978 µs
+  Total Wait Time: 3133 µs
+  CPU Switches: 13
+
+PID: 654216
+  Total CPU Time: 4954 µs
+  Total Wait Time: 5453 µs
+  CPU Switches: 41
+
+PID: 654223
+  Total CPU Time: 7051 µs
+  Total Wait Time: 4796 µs
+  CPU Switches: 20
+
+PID: 654191
+  Total CPU Time: 9376 µs
+  Total Wait Time: 3839 µs
+  CPU Switches: 20
+
+PID: 654181
+  Total CPU Time: 5306 µs
+  Total Wait Time: 5193 µs
+  CPU Switches: 47
+
+PID: 654196
+  Total CPU Time: 7185 µs
+  Total Wait Time: 2338 µs
+  CPU Switches: 20
+
+PID: 654185
+  Total CPU Time: 5460 µs
+  Total Wait Time: 4599 µs
+  CPU Switches: 48
+
+PID: 654203
+  Total CPU Time: 8045 µs
+  Total Wait Time: 3259 µs
+  CPU Switches: 12
+
+PID: 654201
+  Total CPU Time: 3224 µs
+  Total Wait Time: 5064 µs
+  CPU Switches: 13
+
+PID: 654204
+  Total CPU Time: 6429 µs
+  Total Wait Time: 2412 µs
+  CPU Switches: 18
+
+PID: 654200
+  Total CPU Time: 7006 µs
+  Total Wait Time: 3458 µs
+  CPU Switches: 13
+
+PID: 654195
+  Total CPU Time: 8452 µs
+  Total Wait Time: 2971 µs
+  CPU Switches: 10
+
+PID: 654193
+  Total CPU Time: 7389 µs
+  Total Wait Time: 1540 µs
+  CPU Switches: 6
+
+PID: 654186
+  Total CPU Time: 4689 µs
+  Total Wait Time: 4240 µs
+  CPU Switches: 32
+
+PID: 654188
+  Total CPU Time: 5029 µs
+  Total Wait Time: 5200 µs
+  CPU Switches: 43
+
+PID: 654177
+  Total CPU Time: 4592 µs
+  Total Wait Time: 5468 µs
+  CPU Switches: 27
+
+PID: 654182
+  Total CPU Time: 4410 µs
+  Total Wait Time: 5410 µs
+  CPU Switches: 47
+
+PID: 654194
+  Total CPU Time: 7683 µs
+  Total Wait Time: 3216 µs
+  CPU Switches: 22
+
+PID: 654227
+  Total CPU Time: 7744 µs
+  Total Wait Time: 2594 µs
+  CPU Switches: 11
+
+PID: 654202
+  Total CPU Time: 6699 µs
+  Total Wait Time: 2817 µs
+  CPU Switches: 17
+
+PID: 654237
+  Total CPU Time: 5316 µs
+  Total Wait Time: 3967 µs
+  CPU Switches: 8
+
+PID: 654231
+  Total CPU Time: 7132 µs
+  Total Wait Time: 3475 µs
+  CPU Switches: 13
+
+PID: 654189
+  Total CPU Time: 5004 µs
+  Total Wait Time: 4394 µs
+  CPU Switches: 38
+
+PID: 654176
+  Total CPU Time: 5449 µs
+  Total Wait Time: 4307 µs
+  CPU Switches: 48
+
+PID: 654213
+  Total CPU Time: 4246 µs
+  Total Wait Time: 3904 µs
+  CPU Switches: 17
+
+PID: 654183
+  Total CPU Time: 4050 µs
+  Total Wait Time: 3939 µs
+  CPU Switches: 26
+
+PID: 654220
+  Total CPU Time: 4218 µs
+  Total Wait Time: 3633 µs
+  CPU Switches: 35
+
+PID: 654226
+  Total CPU Time: 5817 µs
+  Total Wait Time: 3207 µs
+  CPU Switches: 10
+
+PID: 654217
+  Total CPU Time: 4803 µs
+  Total Wait Time: 3742 µs
+  CPU Switches: 28
+
+PID: 654232
+  Total CPU Time: 5419 µs
+  Total Wait Time: 3925 µs
+  CPU Switches: 13
+
+PID: 654187
+  Total CPU Time: 4819 µs
+  Total Wait Time: 3799 µs
+  CPU Switches: 23
+
+PID: 654205
+  Total CPU Time: 7835 µs
+  Total Wait Time: 2768 µs
+  CPU Switches: 20
+
+PID: 654192
+  Total CPU Time: 5914 µs
+  Total Wait Time: 2756 µs
+  CPU Switches: 10
+
+PID: 654197
+  Total CPU Time: 7492 µs
+  Total Wait Time: 1820 µs
+  CPU Switches: 19
+
+--- Overall Statistics (per PID aggregated) ---
+Average Total CPU Time: 6074.97 µs
+Max Total CPU Time: 11076 µs
+Min Total CPU Time: 3224 µs
+Average Total Wait Time: 4277.86 µs
+Max Total Wait Time: 7115 µs
+Min Total Wait Time: 1540 µs
+Average CPU Switches: 25.75
+Max CPU Switches: 59
+Min CPU Switches: 6
