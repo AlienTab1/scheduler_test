@@ -36,4 +36,4 @@ sleep 1
 
 echo "cyclictest latency measurement:"
 #echo "thread -" $((threads-1))
-sudo cyclictest --mlockall --priority=80 --interval=200 --distance=0 --loop=100000 --mainaffinity=0 --threads=$(($threads-1)) --affinity=1-$(($threads-1)) 
+sudo cyclictest --mlockall --nsecs --priority=80 --interval=200 --distance=0 --loop=100000 --mainaffinity=0 --threads=$(($threads-1)) --affinity=1-$(($threads-1)) 
