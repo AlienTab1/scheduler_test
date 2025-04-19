@@ -1,7 +1,0 @@
-deb http://archive.debian.org/debian/ etch main non-free contrib
-deb http://archive.debian.org/debian-security/ etch/updates main non-free contrib
-deb http://archive.debian.org/debian-volatile/ etch/volatile main non-free contrib
-
-deb-src http://archive.debian.org/debian/ etch main non-free contrib
-deb-src http://archive.debian.org/debian-security/ etch/updates main non-free contrib
-deb-src http://archive.debian.org/debian-volatile/ etch/volatile main non-free contrib

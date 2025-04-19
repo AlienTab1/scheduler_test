@@ -5,3 +5,6 @@ pipx install git+https://github.com/systemd/mkosi.git
 sudo apt install systemd-repart
 
 mkosi --output image.raw --qemu-smp 2 qemu --force
+
+ln tests/* mkosi_bookworm/mkosi.extra/usr/bin/
+ln tests/* mkosi_trixie/mkosi.extra/usr/bin/
