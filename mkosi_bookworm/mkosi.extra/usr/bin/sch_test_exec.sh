@@ -5,6 +5,7 @@
 # Call env init script to mount opuput partition
 sch_test_env_init.sh
 
+sleep 2
 # Detect environment info
 threads=$(grep -c ^processor /proc/cpuinfo)
 

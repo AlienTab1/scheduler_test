@@ -75,7 +75,7 @@ plt.xlabel("Iteration (C)")
 plt.ylabel("Avg Latency (us)")
 plt.xlim(0, 10000)
 plt.grid(True)
-plt.legend(loc="lower right", ncol=2, fontsize="small")
+plt.legend(loc="upper right", ncol=2, fontsize="small")
 plt.tight_layout()
 
 plt.savefig(output_plot, dpi=150)
