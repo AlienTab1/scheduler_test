@@ -1,0 +1,11 @@
+CPU Model: AMD Ryzen 9 5950X 16-Core
+Architecture: x86_64
+CPU Cores (Physical): 16
+Threads per Core: 2 (SMT)
+Total Logical CPUs: 32
+Base Frequency: 550 MHz
+Max Turbo Frequency: 5084 MHz
+L1 Cache (Data + Instruction): 512 KiB (Data), 512 KiB (Instruction) (? instances)
+NUMA Nodes: 1 (CPUs 0-31)
+RAM Installed: 125 GiB
+Swap Space: 975 Mi

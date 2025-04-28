@@ -1,0 +1,20 @@
+Latency Statistics per CPU:
+CPU  1 -> Min: 1699 us, Max: 93718 us, Avg: 3933.36 us
+CPU  2 -> Min: 1839 us, Max: 98974 us, Avg: 3939.58 us
+CPU  3 -> Min: 1826 us, Max: 98157 us, Avg: 3942.38 us
+CPU  4 -> Min: 1835 us, Max: 110197 us, Avg: 3897.15 us
+CPU  5 -> Min: 1673 us, Max: 106225 us, Avg: 3781.19 us
+CPU  6 -> Min: 1882 us, Max: 100692 us, Avg: 3923.30 us
+CPU  7 -> Min: 2269 us, Max: 103046 us, Avg: 5348.04 us
+CPU  8 -> Min: 2334 us, Max: 108742 us, Avg: 5393.27 us
+CPU  9 -> Min: 2166 us, Max: 100162 us, Avg: 5372.72 us
+CPU 10 -> Min: 2315 us, Max: 107717 us, Avg: 5456.14 us
+CPU 11 -> Min: 2350 us, Max: 100367 us, Avg: 5514.23 us
+CPU 12 -> Min: 2349 us, Max: 107059 us, Avg: 5415.45 us
+CPU 13 -> Min: 2367 us, Max: 109861 us, Avg: 5433.27 us
+CPU 14 -> Min: 2256 us, Max: 144278 us, Avg: 5306.74 us
+
+Overall:
+Min: 1673 us
+Max: 144278 us
+Avg: 4761.20 us
