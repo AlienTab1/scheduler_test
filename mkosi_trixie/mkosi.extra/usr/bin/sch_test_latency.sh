@@ -1,38 +1,13 @@
 #!/bin/bash
 
-param="$1"
-name="${param%%=*}"
-value="${param#*=}"
-
-#echo "value " $value
-#echo "name " $name
-
-echo "Latency test"
+echo "Scehdulre Latency test"
 
 threads=$(grep processor /proc/cpuinfo | wc -l)
 echo "Current CPU threads: " $threads 
 
-if [[ "$name" == "test" ]]; then
-  case "$value" in
-    sys)
-      echo "Starting sysbench.."
-      sysbench_out=$(sysbench cpu run --threads=$threads)&
-      ;;
-    hack)
-      echo "Starting hackbench.."
-      hackbench_out=$(hackbench -g 20 -l 10000 -s 512 -f 25 --threads)&
-      ;;
-    *)
-      echo "Unknown value for param test: $value"
-      echo "Starting hackbench.."
-      hackbench_out=$(hackbench -g 20 -l 10000 -s 512 -f 25 --threads)&
-      ;;
-  esac
-  else
-    echo "Starting hackbench.."
-    hackbench_out=$(hackbench -g 20 -l 10000 -s 512 -f 25 --threads)&
-fi  
 
+echo "Starting hackbench.."
+hackbench_out=$(hackbench -g 20 -l 10000 -s 512 -f 25 -T)&
 
 sleep 1
 

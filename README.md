@@ -1,6 +1,22 @@
 # scheduler_test
+This repository contains, scripts and configurations for the testing of linux process scheduler from debian distribution based images created by mkosi tool.
 
+## Content of the repository
 
+- mkosi_bookworm\ <br>
+mkosi project directory based on bookworm release with kernel 6.1 and CFS
+
+- mkosi_trixie\ <br>
+mkosi project directory based on trixie release with kernel 6.12 and EEVDF
+
+- original\ <br>
+Original attempt of creating one image with multiple kernels.
+
+- outputs\ <br>
+Contains python script for test results data analysis, plots and data tables generatos.
+
+- tests\ <br>
+Directory containing process scheduler tests targetin scheduling criteria. 
 
 ## Useful commands
 ### dd created image to USB disk
@@ -12,7 +28,7 @@
 >*sudo apt install systemd-repart*
 
 ### Create new image and run it in Quemu VM
->*mkosi --output image.raw --qemu-smp 2 qemu --force*
+>*mkosi --qemu-smp 2 qemu --force*
 - without Quemu<br> 
->*mkosi --output image.raw --force*
+>*mkosi --force*
 
