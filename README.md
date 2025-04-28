@@ -3,19 +3,20 @@ This repository contains, scripts and configurations for the testing of linux pr
 
 ## Content of the repository
 
-- mkosi_bookworm\ <br>
+- **mkosi_bookworm\ ** <br>
 mkosi project directory based on bookworm release with kernel 6.1 and CFS
 
-- mkosi_trixie\ <br>
+- **mkosi_trixie\ ** <br>
 mkosi project directory based on trixie release with kernel 6.12 and EEVDF
 
-- original\ <br>
+- **original\ ** <br>
 Original attempt of creating one image with multiple kernels.
 
-- outputs\ <br>
+- **outputs\ ** <br>
 Contains python script for test results data analysis, plots and data tables generatos.
+And measurements data results. 
 
-- tests\ <br>
+- **tests\ ** <br>
 Directory containing process scheduler tests targetin scheduling criteria. 
 
 ## Useful commands
