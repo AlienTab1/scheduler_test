@@ -1,0 +1,22 @@
+Latency Statistics per Thread (final cyclictest report only):
+T 0 -> Min: 2119 us, Max: 191843 us, Avg: 5375.00 us
+T 1 -> Min: 2177 us, Max: 88767 us, Avg: 5383.00 us
+T 2 -> Min: 2071 us, Max: 107694 us, Avg: 5353.00 us
+T 3 -> Min: 2065 us, Max: 60940 us, Avg: 5359.00 us
+T 4 -> Min: 1951 us, Max: 107343 us, Avg: 5186.00 us
+T 5 -> Min: 2230 us, Max: 69093 us, Avg: 5465.00 us
+T 6 -> Min: 2157 us, Max: 53391 us, Avg: 5279.00 us
+T 7 -> Min: 2054 us, Max: 73352 us, Avg: 5324.00 us
+T 8 -> Min: 3250 us, Max: 82466 us, Avg: 7288.00 us
+T 9 -> Min: 3223 us, Max: 68156 us, Avg: 7021.00 us
+T10 -> Min: 3292 us, Max: 78148 us, Avg: 7127.00 us
+T11 -> Min: 3296 us, Max: 72403 us, Avg: 7199.00 us
+T12 -> Min: 3355 us, Max: 96906 us, Avg: 7125.00 us
+T13 -> Min: 2846 us, Max: 72123 us, Avg: 7356.00 us
+T14 -> Min: 3249 us, Max: 76924 us, Avg: 6930.00 us
+T15 -> Min: 3338 us, Max: 67525 us, Avg: 7141.00 us
+
+Overall:
+Min: 1951 us
+Max: 191843 us
+Avg: 6244.44 us

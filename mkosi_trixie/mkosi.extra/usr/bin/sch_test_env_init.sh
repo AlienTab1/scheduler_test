@@ -1,5 +1,24 @@
 #!/bin/bash
 
+# set scheduler settings
+echo "Appliing unified scheduler settings.."
+
+echo 1 > /proc/sys/kernel/sched_autogroup_enabled
+echo 5000 > /proc/sys/kernel/sched_cfs_bandwidth_slice_us
+echo 0 > /proc/sys/kernel/sched_child_runs_first
+echo 4194304 > /proc/sys/kernel/sched_deadline_period_max_us
+echo 100 > /proc/sys/kernel/sched_deadline_period_min_us
+echo 0 > /proc/sys/kernel/sched_energy_aware
+echo 1 > /proc/sys/kernel/sched_itmt_enabled
+echo 100 > /proc/sys/kernel/sched_rr_timeslice_ms
+echo 1000000 > /proc/sys/kernel/sched_rt_period_us
+echo 950000 > /proc/sys/kernel/sched_rt_runtime_us
+echo 0 > /proc/sys/kernel/sched_schedstats
+
+echo "All scheduler settings applied."
+
+
+# mount output partition
 mount_sequence() {
     if create_output_dir; then
         mount_output
@@ -31,39 +50,6 @@ else
     sleep 5
     mount_sequence
 fi
-
-
-# Set scheduler settings
-
-# List of parameters to set
-declare -A params=(
-    [sched_autogroup_enabled]=0
-    [sched_cfs_bandwidth_slice_us]=5000
-    [sched_child_runs_first]=0
-    [sched_deadline_period_max_us]=4194304
-    [sched_deadline_period_min_us]=100
-    [sched_energy_aware]=1
-    [sched_itmt_enabled]=1
-    [sched_rr_timeslice_ms]=100
-    [sched_rt_period_us]=1000000
-    [sched_rt_runtime_us]=950000
-    [sched_schedstats]=0
-)
-
-echo "Applying scheduler settings..."
-
-for param in "${!params[@]}"; do
-    path="/proc/sys/kernel/$param"
-    if [ -e "$path" ]; then
-        echo "${params[$param]}" | sudo tee "$path" > /dev/null
-        echo "Set $param to ${params[$param]}"
-    else
-        echo "Warning: $path does not exist (skipped)"
-    fi
-done
-
-echo "All settings applied."
-
 #------------------------------------------------------
 
 
