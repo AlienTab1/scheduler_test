@@ -37,9 +37,7 @@ with open(input_file, "r") as file:
 # Regex pattern to match each latency report line
 pattern = re.compile(r"T:\s*(\d+).*?C:\s*(\d+).*?Min:\s*(\d+).*?Avg:\s*(\d+).*?Max:\s*(\d+)", re.MULTILINE)
 
-thread_data = defaultdict(list)  # For plotting: (cumulative count, avg latency)
-cumulative_c = defaultdict(int)  # Running cumulative counter C per thread
-stats_per_tid = defaultdict(lambda: {'min': float('inf'), 'max': 0, 'sum': 0, 'count': 0})  # Temporary stats accumulator (not final one)
+thread_data = defaultdict(list)  # For plotting: (counter C, avg latency)
 
 # Parse all matches in the input
 for match in pattern.finditer(text):
@@ -49,26 +47,21 @@ for match in pattern.finditer(text):
     avg = int(match.group(4))   # Average latency
     max_v = int(match.group(5)) # Maximum latency
 
-    # Ignore entries where counter C == 0 (invalid or not started thread)
     if c == 0:
-        continue
+        continue  # Ignore invalid measurements
 
-    cumulative_c[tid] += c
-    thread_data[tid].append((cumulative_c[tid], avg))
-
-    # Temporary statistics collection (not used finally)
-    stats_per_tid[tid]['min'] = min(stats_per_tid[tid]['min'], min_v)
-    stats_per_tid[tid]['max'] = max(stats_per_tid[tid]['max'], max_v)
-    stats_per_tid[tid]['sum'] += avg
-    stats_per_tid[tid]['count'] += 1
+    thread_data[tid].append((c, avg))  # Store real C value for correct plotting
 
 # ---- Step 3: Generate plot ----
+
+SKIP_FIRST = 1  # <<< Skip first N samples to avoid initial warm-up instability (set to 0 if not wanted)
+
 plt.figure(figsize=(8.15, 6.00))
 
 # Plot curve for each thread
 for tid in sorted(thread_data.keys()):
-    if len(thread_data[tid]) > 1:
-        x_vals, y_vals = zip(*thread_data[tid])
+    if len(thread_data[tid]) > SKIP_FIRST:
+        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])  # Skip first N points
         plt.plot(x_vals, y_vals, label=f"T{tid}")
 
 plt.xlabel("Iteration (C)")
@@ -98,7 +91,7 @@ for match in matches:
     max_v = int(match.group(5))
 
     if c > 0:
-        last_tid_values[tid] = (min_v, avg, max_v)  # Always overwrite to capture the last valid report
+        last_tid_values[tid] = (min_v, avg, max_v)  # Always overwrite to capture the latest valid stats
 
 # Write statistics to output text file
 with open(output_stats, "w") as f:

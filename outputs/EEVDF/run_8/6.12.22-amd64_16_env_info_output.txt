@@ -1,0 +1,118 @@
+=== CPU Information ===
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        39 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               16
+On-line CPU(s) list:                  0-15
+Vendor ID:                            GenuineIntel
+Model name:                           12th Gen Intel(R) Core(TM) i7-1260P
+CPU family:                           6
+Model:                                154
+Thread(s) per core:                   2
+Core(s) per socket:                   12
+Socket(s):                            1
+Stepping:                             3
+CPU(s) scaling MHz:                   12%
+CPU max MHz:                          4700.0000
+CPU min MHz:                          400.0000
+BogoMIPS:                             4992.00
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities
+Virtualization:                       VT-x
+L1d cache:                            448 KiB (12 instances)
+L1i cache:                            640 KiB (12 instances)
+L2 cache:                             9 MiB (6 instances)
+L3 cache:                             18 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-15
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Mitigation; Clear Register File
+Vulnerability Retbleed:               Not affected
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+lscpu: options --all, --online and --offline may only be used with options --extended or --parse.
+NAME ONE-SIZE ALL-SIZE WAYS TYPE        LEVEL  SETS PHY-LINE COHERENCY-SIZE
+L1d       48K     448K   12 Data            1    64        1             64
+L1i       32K     640K    8 Instruction     1    64        1             64
+L2       1.3M       9M   10 Unified         2  2048        1             64
+L3        18M      18M   12 Unified         3 24576        1             64
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ       MHZ
+  0    0      0    0 0:0:0:0          yes 4700.0000 400.0000  400.0000
+  1    0      0    0 0:0:0:0          yes 4700.0000 400.0000  400.0000
+  2    0      0    1 4:4:1:0          yes 4700.0000 400.0000  436.6960
+  3    0      0    1 4:4:1:0          yes 4700.0000 400.0000  400.0000
+  4    0      0    2 8:8:2:0          yes 4700.0000 400.0000  400.0000
+  5    0      0    2 8:8:2:0          yes 4700.0000 400.0000  408.4290
+  6    0      0    3 12:12:3:0        yes 4700.0000 400.0000  411.3900
+  7    0      0    3 12:12:3:0        yes 4700.0000 400.0000  400.0000
+  8    0      0    4 16:16:4:0        yes 3400.0000 400.0000  649.2290
+  9    0      0    5 17:17:4:0        yes 3400.0000 400.0000  400.0000
+ 10    0      0    6 18:18:4:0        yes 3400.0000 400.0000  400.0000
+ 11    0      0    7 19:19:4:0        yes 3400.0000 400.0000  400.0000
+ 12    0      0    8 20:20:5:0        yes 3400.0000 400.0000 3376.4031
+ 13    0      0    9 21:21:5:0        yes 3400.0000 400.0000 2758.4500
+ 14    0      0   10 22:22:5:0        yes 3400.0000 400.0000  400.0000
+ 15    0      0   11 23:23:5:0        yes 3400.0000 400.0000  400.0000
+=== RAM Information ===
+               total        used        free      shared  buff/cache   available
+Mem:            46Gi       572Mi        46Gi       1.4Mi        73Mi        46Gi
+Swap:             0B          0B          0B
+=== CPU Topology ===
+Machine (47GB total)
+  Package L#0
+    NUMANode L#0 (P#0 47GB)
+    L3 L#0 (18MB)
+      L2 L#0 (1280KB) + L1d L#0 (48KB) + L1i L#0 (32KB) + Core L#0
+        PU L#0 (P#0)
+        PU L#1 (P#1)
+      L2 L#1 (1280KB) + L1d L#1 (48KB) + L1i L#1 (32KB) + Core L#1
+        PU L#2 (P#2)
+        PU L#3 (P#3)
+      L2 L#2 (1280KB) + L1d L#2 (48KB) + L1i L#2 (32KB) + Core L#2
+        PU L#4 (P#4)
+        PU L#5 (P#5)
+      L2 L#3 (1280KB) + L1d L#3 (48KB) + L1i L#3 (32KB) + Core L#3
+        PU L#6 (P#6)
+        PU L#7 (P#7)
+      L2 L#4 (2048KB)
+        L1d L#4 (32KB) + L1i L#4 (64KB) + Core L#4 + PU L#8 (P#8)
+        L1d L#5 (32KB) + L1i L#5 (64KB) + Core L#5 + PU L#9 (P#9)
+        L1d L#6 (32KB) + L1i L#6 (64KB) + Core L#6 + PU L#10 (P#10)
+        L1d L#7 (32KB) + L1i L#7 (64KB) + Core L#7 + PU L#11 (P#11)
+      L2 L#5 (2048KB)
+        L1d L#8 (32KB) + L1i L#8 (64KB) + Core L#8 + PU L#12 (P#12)
+        L1d L#9 (32KB) + L1i L#9 (64KB) + Core L#9 + PU L#13 (P#13)
+        L1d L#10 (32KB) + L1i L#10 (64KB) + Core L#10 + PU L#14 (P#14)
+        L1d L#11 (32KB) + L1i L#11 (64KB) + Core L#11 + PU L#15 (P#15)
+  HostBridge
+    PCI 00:02.0 (VGA)
+    PCIBridge
+      PCI 02:00.0 (NVMExp)
+        Block(Disk) "nvme0n1"
+    PCI 00:14.3 (Network)
+    PCI 00:1f.6 (Ethernet)
+      Net "enp0s31f6"
+  Misc(MemoryModule)
+  Misc(MemoryModule)
+=== Kernel Version ===
+6.12.22-amd64
+=== Scheduler Settings (/proc/sys/kernel/sched*) ===
+sched_autogroup_enabled: 1
+sched_cfs_bandwidth_slice_us: 5000
+sched_deadline_period_max_us: 4194304
+sched_deadline_period_min_us: 100
+sched_energy_aware: 
+sched_itmt_enabled: 1
+sched_rr_timeslice_ms: 100
+sched_rt_period_us: 1000000
+sched_rt_runtime_us: 950000
+sched_schedstats: 0

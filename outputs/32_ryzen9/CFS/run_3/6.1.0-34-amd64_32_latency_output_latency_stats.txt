@@ -1,0 +1,38 @@
+Latency Statistics per Thread (final cyclictest report only):
+T 0 -> Min: 2279 us, Max: 51391 us, Avg: 4275.00 us
+T 1 -> Min: 2262 us, Max: 48931 us, Avg: 4182.00 us
+T 2 -> Min: 2363 us, Max: 79994 us, Avg: 4513.00 us
+T 3 -> Min: 2352 us, Max: 51708 us, Avg: 4206.00 us
+T 4 -> Min: 2181 us, Max: 94794 us, Avg: 4354.00 us
+T 5 -> Min: 2339 us, Max: 51340 us, Avg: 4421.00 us
+T 6 -> Min: 2365 us, Max: 59210 us, Avg: 4408.00 us
+T 7 -> Min: 2089 us, Max: 54717 us, Avg: 4617.00 us
+T 8 -> Min: 2312 us, Max: 74127 us, Avg: 4328.00 us
+T 9 -> Min: 2074 us, Max: 53538 us, Avg: 4237.00 us
+T10 -> Min: 2316 us, Max: 52715 us, Avg: 4688.00 us
+T11 -> Min: 2283 us, Max: 49164 us, Avg: 4242.00 us
+T12 -> Min: 2073 us, Max: 55144 us, Avg: 4274.00 us
+T13 -> Min: 2344 us, Max: 56533 us, Avg: 4394.00 us
+T14 -> Min: 2366 us, Max: 70710 us, Avg: 4919.00 us
+T15 -> Min: 2186 us, Max: 51423 us, Avg: 4615.00 us
+T16 -> Min: 2268 us, Max: 67193 us, Avg: 4353.00 us
+T17 -> Min: 2054 us, Max: 51323 us, Avg: 4287.00 us
+T18 -> Min: 2070 us, Max: 104289 us, Avg: 4178.00 us
+T19 -> Min: 2341 us, Max: 67840 us, Avg: 4646.00 us
+T20 -> Min: 2072 us, Max: 52195 us, Avg: 4402.00 us
+T21 -> Min: 2135 us, Max: 56983 us, Avg: 4217.00 us
+T22 -> Min: 2399 us, Max: 51265 us, Avg: 4772.00 us
+T23 -> Min: 2219 us, Max: 48857 us, Avg: 4362.00 us
+T24 -> Min: 2339 us, Max: 49340 us, Avg: 4479.00 us
+T25 -> Min: 2363 us, Max: 50292 us, Avg: 4394.00 us
+T26 -> Min: 2317 us, Max: 59013 us, Avg: 4266.00 us
+T27 -> Min: 2092 us, Max: 49794 us, Avg: 4138.00 us
+T28 -> Min: 2366 us, Max: 52057 us, Avg: 4332.00 us
+T29 -> Min: 2363 us, Max: 52223 us, Avg: 4470.00 us
+T30 -> Min: 2082 us, Max: 51888 us, Avg: 4064.00 us
+T31 -> Min: 2104 us, Max: 52826 us, Avg: 4086.00 us
+
+Overall:
+Min: 2054 us
+Max: 104289 us
+Avg: 4378.72 us

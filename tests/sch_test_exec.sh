@@ -1,13 +1,6 @@
 #!/bin/bash
 
 # Script for execution of process scheduler tests
-# Improved with kernel version prefix and run_x directory creation
-
-# Call environment init script to mount output partition and setupt scheduler
-sch_test_env_init.sh
-
-# Wait a bit to ensure mount
-sleep 2
 
 # Detect number of threads
 threads=$(grep -c ^processor /proc/cpuinfo)
