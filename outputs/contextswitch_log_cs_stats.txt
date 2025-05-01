@@ -1,0 +1,5 @@
+Context Switch Statistics per Thread:
+
+
+Overall Summary:
+Total Involuntary Switches (sum across all threads): 0.00
