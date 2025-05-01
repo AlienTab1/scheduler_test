@@ -90,16 +90,35 @@ plt.legend(fontsize="small", loc="upper right", ncol=2)
 plt.tight_layout()
 plt.savefig(plot_path, dpi=150)
 
-print(f"\n✅ Plot saved as: {plot_path}")
+print(f"\nPlot saved as: {plot_path}")
 
 # ----------------------- Optional Text Dump -----------------------
 
 with open(text_path, "w") as f:
     f.write(f"Parsed nvcswch/s values per thread (Duration: {duration}s):\n\n")
+
+    thread_totals = []
+    thread_averages = []
+
     for idx, tgid in enumerate(sorted(tgid_data)):
+        values = [val for _, val in tgid_data[tgid]]
+        total = sum(values)
+        avg = total / len(values) if values else 0
+        thread_totals.append(total)
+        thread_averages.append(avg)
+
         f.write(f"Thread_{idx} (Tgid {tgid}):\n")
         for x, val in tgid_data[tgid]:
-            f.write(f"  Sample {x} -> {val} cswch/s\n")
-        f.write("\n")
+            f.write(f"  Sample {x} -> {val:.2f} cswch/s\n")
+        f.write(f"  Total: {total:.2f} cswch/s\n")
+        f.write(f"  Average: {avg:.2f} cswch/s\n\n")
 
-print(f"✅ Parsed data written to: {text_path}")
+    overall_total = sum(thread_totals)
+    overall_avg = sum(thread_averages) / len(thread_averages) if thread_averages else 0
+
+    f.write("--- Overall Statistics ---\n")
+    f.write(f"Total CS across all threads: {overall_total:.2f} cswch/s\n")
+    f.write(f"Average per thread: {overall_avg:.2f} cswch/s\n")
+
+
+print(f"Parsed data written to: {text_path}")
