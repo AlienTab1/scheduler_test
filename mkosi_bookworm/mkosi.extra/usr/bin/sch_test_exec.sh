@@ -76,5 +76,6 @@ declare -A test_map=(
 for key in "${!test_map[@]}"; do
     if $run_all || [[ " ${tests[*]} " =~ " ${key} " ]]; then
         run_test "$key" "${test_map[$key]}"
+        sleep 3
     fi
 done
