@@ -24,14 +24,22 @@ echo "Threads detected: $threads"
 
 # Start environment info collection
 echo "Getting environment info..."
-sch_test_env_info.sh > "${run_dir}/${kernel_version}_${threads}_env_info_output.txt" 2>&1 &
+sch_test_env_info.sh > "${run_dir}/sch_env_info_output_${kernel_version}_${threads}.txt" 2>&1 &
 PID=$!
 wait $PID
 echo "Environment info collection complete."
 
 # Run the latency test
 echo "Running latency test..."
-sch_test_latency.sh > "${run_dir}/${kernel_version}_${threads}_latency_output.txt" 2>&1 &
+sch_test_latency.sh > "${run_dir}/sch_latency_output_${kernel_version}_${threads}.txt" 2>&1 &
 PID=$!
 wait $PID
 echo "Latency test complete."
+
+# Run throughput test
+echo "Running throughput test..."
+sch_test_throughtput.sh > "${run_dir}/sch_throughput_output_${kernel_version}_${threads}.txt" 2>&1 &
+PID=$!
+wait $PID
+echo "Throughput test complete."
+
