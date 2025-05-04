@@ -1,49 +1,59 @@
 #!/bin/bash
 
-echo "Scheduler Fairness Test (tracking only hackbench scheduling events)"
+echo "=== Scheduler Fairness Test with PID/TID Logging ==="
 
-# Setup output directory
-outputs_dir="/tmp/outputs"
-mkdir -p "$outputs_dir"
-rm -f "$outputs_dir"/*
+# Detect CPU threads
+cpu_threads=$(grep -c ^processor /proc/cpuinfo)
+echo "# Logical CPUs: $cpu_threads"
 
-# Detect CPU count
-threads=$(grep -c ^processor /proc/cpuinfo)
-echo "Using $threads logical CPUs"
+CLK_TCK=$(getconf CLK_TCK)
+echo "# CLK_TCK: $CLK_TCK"
 
-perf_data_file="$outputs_dir/perf_sched.data"
+# Determine group count (2x CPUs)
+groups_per_hackbench=$((cpu_threads))
 
-# Start perf recording only for hackbench
-echo "Starting perf record for hackbench (sched events only)..."
-perf record -e sched:* -g -o "$perf_data_file"&
-perf_pid=$!
+# Hackbench params
+LOOPS=80000
+FDS=6
+BYTES=512
 
-# Start hackbench
-echo "Starting hackbench..."
-hackbench -s 512 -l 1500 -g 12 -f 25 -P &
-hackbench_pid=$!
-echo "Hackbench PID: $hackbench_pid"
+# Launch Group A: nice 0
+echo -e "\n# Starting Group A (nice 0)"
+nice -n 0 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
+pid_a=$!
 
-# Give hackbench time to spawn threads
-#sleep .5
+# Launch Group B: nice 10
+echo -e "\n# Starting Group B (nice 10)"
+nice -n 10 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
+pid_b=$!
 
-# Save LWP IDs
-thread_lwps=$(ps -L -o pid,tid,comm | grep hackbench | awk '{print $2}')
-echo "$thread_lwps" > "$outputs_dir/thread_lwps.txt"
-echo "Captured LWP count: $(echo "$thread_lwps" | wc -w)"
+# Wait for children to spawn
+sleep 0.1
 
-# Wait for hackbench to finish
-wait "$hackbench_pid"
-echo "Hackbench completed."
+# Capture all child PIDs of hackbench groups
+group_a_pids=$(pgrep -P "$pid_a" )
+group_b_pids=$(pgrep -P "$pid_b" )
 
-# Stop perf cleanly
-kill "$perf_pid" 2>/dev/null
-wait "$perf_pid" 2>/dev/null
+# Merge all PIDs from both groups
+all_pids="$group_a_pids $group_b_pids"
 
-# Convert perf.data to readable trace
-perf script -i "$perf_data_file" > "$outputs_dir/perf_trace.txt"
+echo "# Total TIDs being logged: $(echo "$all_pids" | wc -w)"
+echo "timestamp,starttime,pid,nice,utime,stime"
+echo "Start logging"
+# Main logging loop
+while kill -0 "$pid_a" 2>/dev/null || kill -0 "$pid_b" 2>/dev/null; do
+    timestamp=$(date +%s.%N)
 
-echo "Done. Output files:"
-echo " - Thread LWPs: $outputs_dir/thread_lwps.txt"
-echo " - Perf data:   $perf_data_file"
-echo " - Trace:       $outputs_dir/perf_trace.txt"
+    for pid in $all_pids; do
+        if [[ -r /proc/$pid/stat ]]; then
+            stat_line=$(< /proc/$pid/stat)
+            fields=($stat_line)
+            echo "$timestamp,${fields[21]},$pid,${fields[18]},${fields[13]},${fields[14]}"
+        fi
+    done
+    echo "end sample"
+    sleep 0.1
+done
+
+
+echo "# Fairness test complete"
