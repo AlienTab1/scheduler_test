@@ -71,7 +71,7 @@ for scenario, details in scenarios:
 # ---- Step 3: Generate histogram plot ----
 plt.figure(figsize=(10, 6))
 bars = plt.bar(scenario_labels, total_events, color='skyblue')
-plt.xlabel('Test scenario: (test execution time) + (with or without background load')
+plt.xlabel('Test scenario: (test execution time) + (with or without background load)')
 plt.ylabel('Total Number of Events')
 plt.title('Sysbench Total Events per Scenario')
 

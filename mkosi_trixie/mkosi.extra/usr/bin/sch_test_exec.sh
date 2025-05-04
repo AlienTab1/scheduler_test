@@ -68,7 +68,7 @@ declare -A test_map=(
     ["fai"]="sch_test_fairness.sh"
     ["sca"]="sch_test_scalability.sh"
     ["res"]="sch_test_responsiveness.sh"
-    ["ctx"]="sch_test_context_switching.sh"
+    ["ctx"]="sch_test_contextswitch.sh"
     ["star"]="sch_test_starvation.sh"
 )
 
