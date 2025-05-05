@@ -1,127 +1,161 @@
-import re
-from collections import defaultdict
-import statistics
+import os
+import sys
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Load thread IDs of interest from file
-with open('thread_lwps.txt') as f:
-    lwps = set(line.strip() for line in f)
+# ==============================================================================
+# Fairness Log Parser
+# --------------------
+# This script processes hackbench scheduler fairness logs.
+# For each unique PID, it calculates:
+# - CPU time (user + system) using utime + stime
+# - Wall time based on timestamps and process start time
+# - Group-level fairness statistics aggregated by 'nice' level
+# - Efficiency metrics:
+#     - CPU Efficiency = CPU time / wall time
+#     - Group CPU Utilization = total CPU time / (lifetime span × logical CPUs)
+# It outputs three plots and a text summary.
+# ==============================================================================
 
-# Data structure to hold stats for each PID
-stats = defaultdict(lambda: {
-    'cpu_times_us': [],               # List of time intervals spent on CPU (in microseconds)
-    'wait_times_us': [],              # List of time intervals spent waiting (in microseconds)
-    'switches': 0,                    # Number of times the thread was context-switched
-    'last_on_timestamp_us': None,    # Last time the thread was switched in
-    'last_off_timestamp_us': None,   # Last time the thread was switched out
-    'on_cpu': False                   # Whether the thread is currently on CPU
-})
+def print_help():
+    print("Usage: python fairness_parser.py <input_file> <output_directory>")
+    sys.exit(1)
 
-# Regex to match sched_switch events and extract PIDs
-sched_switch_re = re.compile(
-    r'sched_switch: prev_comm=.* prev_pid=(\d+) .* ==> next_comm=.* next_pid=(\d+) '
-)
+# ------------------------- Argument Parsing -------------------------
+if len(sys.argv) != 3:
+    print("Error: Missing arguments.\n")
+    print_help()
 
-# Regex to match sched_stat_runtime events and extract runtime
-runtime_re = re.compile(
-    r'sched_stat_runtime: comm=.* pid=(\d+) runtime=(\d+) \[ns\]'
-)
+input_file = sys.argv[1]
+output_dir = sys.argv[2]
 
-# Process the perf trace line-by-line
-with open('perf_trace.txt') as f:
+if not os.path.isfile(input_file):
+    print(f"Error: File not found: {input_file}")
+    sys.exit(1)
+
+if not os.path.isdir(output_dir):
+    print(f"Error: Output directory not found: {output_dir}")
+    sys.exit(1)
+
+# ------------------------- Output Paths -------------------------
+basename = os.path.splitext(os.path.basename(input_file))[0]
+stats_path = os.path.join(output_dir, f"{basename}_fairness_stats.txt")
+boxplot_path = os.path.join(output_dir, f"{basename}_boxplot_cpu_time.png")
+utilization_path = os.path.join(output_dir, f"{basename}_barplot_utilization.png")
+
+# ------------------------- Read and Parse Input -------------------------
+logical_cpus = None
+clk_tck = 100  # Default CLK_TCK
+data_lines = []
+
+with open(input_file, 'r') as f:
     for line in f:
-        parts = line.strip().split()
-        if len(parts) < 5 or ':' not in parts[3]:
+        line = line.strip()
+        if not line:
             continue
+        if line.startswith("# Logical CPUs:"):
+            logical_cpus = int(line.split(":")[1].strip())
+        elif line.startswith("# CLK_TCK:"):
+            clk_tck = int(line.split(":")[1].strip())
+        elif line[0].isdigit():
+            data_lines.append(line)
 
-        try:
-            timestamp_sec = float(parts[3].rstrip(':'))  # Extract timestamp
-        except ValueError:
-            continue
+# ------------------------- Parse Raw Data into DataFrame -------------------------
+records = []
+for line in data_lines:
+    parts = line.split(',')
+    if len(parts) != 6:
+        continue
+    ts, st, pid, nice, utime, stime = parts
+    try:
+        ts = float(ts)
+        st = float(st)
+        pid = int(pid)
+        nice = int(nice)
+        ut = int(utime)
+        stt = int(stime)
+        ut_sec = ut / clk_tck
+        st_sec = stt / clk_tck
+        cpu_time = ut_sec + st_sec
+        records.append((ts, st, pid, nice, ut, stt, ut_sec, st_sec, cpu_time))
+    except:
+        continue
 
-        timestamp_us = int(timestamp_sec * 1e6)  # Convert timestamp to microseconds
+columns = [
+    "timestamp", "starttime", "pid", "nice", "utime", "stime",
+    "utime_sec", "stime_sec", "cpu_time"
+]
+df = pd.DataFrame(records, columns=columns)
 
-        # Handle context switches
-        if 'sched_switch:' in line:
-            match = sched_switch_re.search(line)
-            if match:
-                prev_pid, next_pid = match.groups()
+# ------------------------- Align Starttime to Real Clock -------------------------
+boot_time = df["timestamp"].min() - (df["starttime"].min() / clk_tck)
+df["start_sec"] = boot_time + (df["starttime"] / clk_tck)
 
-                # If thread is switched out
-                if prev_pid in lwps:
-                    prev_data = stats[prev_pid]
-                    if prev_data['on_cpu'] and prev_data['last_on_timestamp_us'] is not None:
-                        cpu_time = timestamp_us - prev_data['last_on_timestamp_us']
-                        prev_data['cpu_times_us'].append(cpu_time)  # Record CPU time interval
-                    prev_data['on_cpu'] = False
-                    prev_data['last_off_timestamp_us'] = timestamp_us
-                    prev_data['switches'] += 1
+# ------------------------- Select Final Snapshot Per PID -------------------------
+last_rows = df.sort_values("timestamp").groupby("pid").tail(1)
+first_start = df.groupby("pid")["start_sec"].min().reset_index().rename(columns={"start_sec": "start_sec_first"})
+summary = pd.merge(last_rows, first_start, on="pid", how="left")
+summary["wall_time"] = summary["timestamp"] - summary["start_sec_first"]
 
-                # If thread is switched in
-                if next_pid in lwps:
-                    next_data = stats[next_pid]
-                    if not next_data['on_cpu']:
-                        if next_data['last_off_timestamp_us'] is not None:
-                            wait_time = timestamp_us - next_data['last_off_timestamp_us']
-                            next_data['wait_times_us'].append(wait_time)  # Record wait time interval
-                        next_data['on_cpu'] = True
-                        next_data['last_on_timestamp_us'] = timestamp_us
+# ------------------------- Group By Nice Value -------------------------
+grouped = summary.groupby("nice").agg(
+    count=("pid", "count"),
+    avg_cpu_time=("cpu_time", "mean"),
+    median_cpu_time=("cpu_time", "median"),
+    std_cpu_time=("cpu_time", "std"),
+    avg_wall_time=("wall_time", "mean"),
+    total_wall_time=("wall_time", "sum"),
+    total_cpu_time=("cpu_time", "sum"),
+    span_start=("start_sec_first", "min"),
+    span_end=("timestamp", "max")
+).reset_index()
 
-        # Handle direct runtime reports
-        elif 'sched_stat_runtime:' in line:
-            match = runtime_re.search(line)
-            if match:
-                pid, runtime_ns = match.groups()
-                if pid in lwps:
-                    runtime_us = int(runtime_ns) // 1000
-                    stats[pid]['cpu_times_us'].append(runtime_us)  # Add runtime directly
+grouped["lifetime_span"] = grouped["span_end"] - grouped["span_start"]
+grouped["avg_cpu_efficiency"] = grouped["avg_cpu_time"] / grouped["avg_wall_time"]
+grouped["utilization"] = grouped["total_cpu_time"] / (grouped["lifetime_span"] * logical_cpus)
 
-# Aggregate total values per PID
-pid_cpu_totals = []
-pid_wait_totals = []
-pid_switch_totals = []
-pid_total_times = []
+# ------------------------- Plot: Boxplot of CPU Time -------------------------
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=summary, x="nice", y="cpu_time", palette="Blues")
+plt.title("Boxplot: CPU Time per Nice Value")
+plt.xlabel("Nice Value")
+plt.ylabel("CPU Time (seconds)")
+plt.ylim(0.60, 0.90)
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.savefig(boxplot_path)
+plt.close()
 
-for pid, data in stats.items():
-    total_cpu_time = sum(data['cpu_times_us'])
-    total_wait_time = sum(data['wait_times_us'])
-    total_process_time = total_cpu_time + total_wait_time
-    total_switches = data['switches']
+# ------------------------- Plot: Barplot Utilization -------------------------
+plt.figure(figsize=(10, 6))
+sns.barplot(data=grouped, x="nice", y="utilization", palette="Oranges")
+plt.title("Group CPU Utilization by Nice Value")
+plt.xlabel("Nice Value")
+plt.ylabel("CPU Utilization (%)")
+plt.ylim(0, 1)
+plt.tight_layout()
+plt.savefig(utilization_path)
+plt.close()
 
-    pid_cpu_totals.append(total_cpu_time)
-    pid_wait_totals.append(total_wait_time)
-    pid_switch_totals.append(total_switches)
-    pid_total_times.append(total_process_time)
+# ------------------------- Save Summary Statistics -------------------------
+with open(stats_path, "w") as f:
+    f.write("Fairness Test Summary Statistics (Per Unique PID)\n")
+    f.write("==================================================\n\n")
+    f.write(f"Logical CPUs: {logical_cpus if logical_cpus else 'N/A'}\n")
+    f.write(f"CLK_TCK: {clk_tck}\n\n")
 
-    # Print per-thread statistics
-    print(f"PID: {pid}")
-    print(f"  Total CPU Time: {total_cpu_time} µs")
-    print(f"  Total Wait Time: {total_wait_time} µs")
-    print(f"  CPU Switches: {total_switches}")
-    print(f"  Total Process Time: {total_process_time} µs")
-    print()
+    for _, row in grouped.iterrows():
+        f.write(f"Nice = {int(row['nice'])}:\n")
+        f.write(f"  Count: {int(row['count'])}\n")
+        f.write(f"  Avg CPU Time: {row['avg_cpu_time']:.2f} s\n")
+        f.write(f"  Median CPU Time: {row['median_cpu_time']:.2f} s\n")
+        f.write(f"  Std Dev: {row['std_cpu_time']:.2f} s\n")
+        f.write(f"  Avg Wall Time: {row['avg_wall_time']:.2f} s\n")
+        f.write(f"  Total Wall Time: {row['total_wall_time']:.2f} s\n")
+        f.write(f"  Total CPU Time: {row['total_cpu_time']:.2f} s\n")
+        f.write(f"  Lifetime Span: {row['lifetime_span']:.2f} s\n")
+        f.write(f"  Avg CPU Efficiency (CPU time / wall time): {row['avg_cpu_efficiency']:.2%}\n")
+        f.write(f"  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): {row['utilization']:.2%}\n\n")
 
-# Compute overall statistics across all PIDs based on per-PID totals
-print("--- Overall Statistics (per PID aggregated) ---")
-if pid_cpu_totals:
-    print(f"Average Total CPU Time: {statistics.mean(pid_cpu_totals):.2f} µs")
-    print(f"Max Total CPU Time: {max(pid_cpu_totals)} µs")
-    print(f"Min Total CPU Time: {min(pid_cpu_totals)} µs")
-else:
-    print("No CPU time data available.")
-
-if pid_wait_totals:
-    print(f"Average Total Wait Time: {statistics.mean(pid_wait_totals):.2f} µs")
-    print(f"Max Total Wait Time: {max(pid_wait_totals)} µs")
-    print(f"Min Total Wait Time: {min(pid_wait_totals)} µs")
-else:
-    print("No wait time data available.")
-
-if pid_switch_totals:
-    print(f"Average CPU Switches: {statistics.mean(pid_switch_totals):.2f}")
-    print(f"Max CPU Switches: {max(pid_switch_totals)}")
-    print(f"Min CPU Switches: {min(pid_switch_totals)}")
-else:
-    print("No CPU switch data available.")
-
-if pid_total_times:
-    print(f"Total Time of All Processes: {sum(pid_total_times)} µs")
+print(f"✅ Statistics saved: {stats_path}")

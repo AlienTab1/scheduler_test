@@ -13,13 +13,13 @@ echo "# CLK_TCK: $CLK_TCK"
 groups_per_hackbench=$((cpu_threads))
 
 # Hackbench params
-LOOPS=80000
+LOOPS=90000
 FDS=6
 BYTES=512
 
-# Launch Group A: nice 0
-echo -e "\n# Starting Group A (nice 0)"
-nice -n 0 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
+# Launch Group A: nice 18
+echo -e "\n# Starting Group A (nice 18)"
+nice -n 18 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
 pid_a=$!
 
 # Launch Group B: nice 10
@@ -27,21 +27,33 @@ echo -e "\n# Starting Group B (nice 10)"
 nice -n 10 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
 pid_b=$!
 
+# Launch Group C: nice 5
+echo -e "\n# Starting Group C (nice 5)"
+nice -n 5 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
+pid_c=$!
+
+# Launch Group D: nice -5
+echo -e "\n# Starting Group D (nice -5)"
+nice -n -5 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
+pid_d=$!
+
 # Wait for children to spawn
-sleep 0.1
+sleep 0.01
 
 # Capture all child PIDs of hackbench groups
 group_a_pids=$(pgrep -P "$pid_a" )
 group_b_pids=$(pgrep -P "$pid_b" )
+group_c_pids=$(pgrep -P "$pid_c" )
+group_d_pids=$(pgrep -P "$pid_d" )
 
 # Merge all PIDs from both groups
-all_pids="$group_a_pids $group_b_pids"
+all_pids="$group_a_pids $group_b_pids $group_c_pids $group_d_pids"
 
 echo "# Total TIDs being logged: $(echo "$all_pids" | wc -w)"
 echo "timestamp,starttime,pid,nice,utime,stime"
 echo "Start logging"
 # Main logging loop
-while kill -0 "$pid_a" 2>/dev/null || kill -0 "$pid_b" 2>/dev/null; do
+while kill -0 "$pid_a" 2>/dev/null || kill -0 "$pid_b" 2>/dev/null || kill -0 "$pid_c" 2>/dev/null || kill -0 "$pid_d" 2>/dev/null; do
     timestamp=$(date +%s.%N)
 
     for pid in $all_pids; do
