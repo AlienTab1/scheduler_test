@@ -158,4 +158,4 @@ with open(stats_path, "w") as f:
         f.write(f"  Avg CPU Efficiency (CPU time / wall time): {row['avg_cpu_efficiency']:.2%}\n")
         f.write(f"  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): {row['utilization']:.2%}\n\n")
 
-print(f"✅ Statistics saved: {stats_path}")
+print(f"Statistics saved: {stats_path}")
