@@ -4,18 +4,18 @@
 
 # === Help Message ===
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    echo "Usage: $0 [--loops=N] [--tests=lat thr fai sca res ctx star]"
+    echo "Usage: $0 [--loops=N] [--tests=lat,fai,thr,...]"
     echo "Run selected scheduler tests. If no tests are specified, all tests will run once."
     echo
-    echo "  --loops=N  = Repeat the entire test loop N times (default: 1)"
-    echo "  --tests=[lat ... star]  = List of executed tests (if not set all test will be executed)"
-    echo "          lat          = latency"
-    echo "          thr          = throughput"
-    echo "          fai          = fairness"
-    echo "          sca          = scalability"
-    echo "          res          = responsiveness"
-    echo "          ctx          = context switching"
-    echo "          star         = starvation detection"
+    echo "  --loops=N         = Repeat the entire test loop N times (default: 1)"
+    echo "  --tests=lat,fai   = Comma-separated list of test keys:"
+    echo "        lat   = latency"
+    echo "        thr   = throughput"
+    echo "        fai   = fairness"
+    echo "        sca   = scalability"
+    echo "        res   = responsiveness"
+    echo "        ctx   = context switching"
+    echo "        star  = starvation detection"
     exit 0
 fi
 
@@ -25,34 +25,23 @@ kernel_version=$(uname -r)
 output_base="/media/output"
 loops=1
 tests=()
-run_all=false
-parse_tests=false
+run_all=true
 
 # === Parse Parameters ===
 for arg in "$@"; do
     if [[ "$arg" == --loops=* ]]; then
         loops="${arg#*=}"
-    elif [[ "$arg" == --tests ]]; then
-        parse_tests=true
-    elif $parse_tests; then
-        # As long as next args aren't starting with '--', treat them as test keys
-        if [[ "$arg" == --* ]]; then
-            parse_tests=false
-        else
-            tests+=("$arg")
-        fi
+    elif [[ "$arg" == --tests=* ]]; then
+        IFS=',' read -ra tests <<< "${arg#*=}"
+        run_all=false
     fi
 done
-
-if [ ${#tests[@]} -eq 0 ]; then
-    run_all=true
-fi
 
 # === Test Execution Function ===
 run_test() {
     local label=$1
     local script=$2
-    local out_file="$1"
+    local out_file="$3"
 
     echo "Running $label test..."
     "$script" > "$out_file" 2>&1
@@ -69,6 +58,8 @@ declare -A test_map=(
     ["ctx"]="sch_test_contextswitch.sh"
     ["star"]="sch_test_starvation.sh"
 )
+
+echo "Selected tests: ${tests[*]}"
 
 # === Main Loop (Repeat Entire Run) ===
 for ((i = 1; i <= loops; i++)); do
