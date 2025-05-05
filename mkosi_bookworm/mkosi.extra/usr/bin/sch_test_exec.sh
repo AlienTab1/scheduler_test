@@ -61,9 +61,13 @@ declare -A test_map=(
 
 echo "Selected tests: ${tests[*]}"
 
+# === Start total timer ===
+total_start=$SECONDS
+
 # === Main Loop (Repeat Entire Run) ===
 for ((i = 1; i <= loops; i++)); do
     echo "=== Starting test cycle $i of $loops ==="
+    cycle_start=$SECONDS
 
     # --- Create next available run directory ---
     run_index=1
@@ -93,6 +97,13 @@ for ((i = 1; i <= loops; i++)); do
         fi
     done
 
+    elapsed_cycle=$((SECONDS - cycle_start))
+    echo "Elapsed time for cycle $i: ${elapsed_cycle}s"
     echo "=== Finished test cycle $i ==="
     echo
 done
+
+# === Total time summary ===
+total_elapsed=$((SECONDS - total_start))
+echo "=== All test cycles completed ==="
+echo "Total elapsed time: ${total_elapsed}s"
