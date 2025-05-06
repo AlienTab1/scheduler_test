@@ -1,0 +1,54 @@
+Fairness Test Summary Statistics (Per Unique PID)
+==================================================
+
+Logical CPUs: 16
+CLK_TCK: 100
+
+Nice = -5:
+  Count: 179
+  Avg CPU Time: 0.85 s
+  Median CPU Time: 0.82 s
+  Std Dev: 0.12 s
+  Avg Wall Time: 2.81 s
+  Total Wall Time: 503.56 s
+  Total CPU Time: 151.32 s
+  Lifetime Span: 6.40 s
+  Avg CPU Efficiency (CPU time / wall time): 30.05%
+  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): 147.72%
+
+Nice = 5:
+  Count: 192
+  Avg CPU Time: 1.00 s
+  Median CPU Time: 1.00 s
+  Std Dev: 0.04 s
+  Avg Wall Time: 18.67 s
+  Total Wall Time: 3584.04 s
+  Total CPU Time: 191.18 s
+  Lifetime Span: 21.86 s
+  Avg CPU Efficiency (CPU time / wall time): 5.33%
+  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): 54.65%
+
+Nice = 10:
+  Count: 192
+  Avg CPU Time: 0.98 s
+  Median CPU Time: 0.97 s
+  Std Dev: 0.05 s
+  Avg Wall Time: 29.33 s
+  Total Wall Time: 5631.44 s
+  Total CPU Time: 187.95 s
+  Lifetime Span: 31.94 s
+  Avg CPU Efficiency (CPU time / wall time): 3.34%
+  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): 36.77%
+
+Nice = 18:
+  Count: 192
+  Avg CPU Time: 1.03 s
+  Median CPU Time: 1.04 s
+  Std Dev: 0.02 s
+  Avg Wall Time: 39.45 s
+  Total Wall Time: 7575.11 s
+  Total CPU Time: 198.41 s
+  Lifetime Span: 39.85 s
+  Avg CPU Efficiency (CPU time / wall time): 2.62%
+  Group CPU Utilization (% of cores used, total_cpu_time / (lifetime_span * logical_cpus)): 31.12%
+
