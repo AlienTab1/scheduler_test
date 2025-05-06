@@ -117,9 +117,10 @@ for ((i = 1; i <= loops; i++)); do
 done
 
 # === Total time summary ===
-elapsed_test=$((SECONDS - cycle_start))
+elapsed_test=$((SECONDS - total_start))
 test_min=$((elapsed_cycle / 60))
 test_sec=$((elapsed_cycle % 60))
+
 echo "=== All test cycles completed ==="
-printf "Elapsed time of Scheduler testing: %dm:%02ds\n" "$i" "$test_min" "$test_sec"
+printf "Elapsed time of Scheduler testing: %dm:%02ds\n" "$test_min" "$test_sec"
 

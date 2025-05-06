@@ -18,7 +18,7 @@ run_pidstat_test() {
     sleep 2
     echo
     echo "--- pidstat -w -t output ---"
-    pidstat -w -t -I 1 "$duration"
+    pidstat -w -t 1 "$duration"
     wait $stress_pid
 }
 

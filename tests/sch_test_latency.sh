@@ -11,7 +11,7 @@ hackbench -g 20 -l 10000 -s 512 -f 25 -T &
 hb_pid=$!
 
 # Give hackbench a small head start
-sleep 1
+sleep 0.5
 
 echo "Starting cyclictest latency measurement..."
 # Run cyclictest in the background, output to stdout
