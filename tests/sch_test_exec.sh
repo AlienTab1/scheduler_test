@@ -44,9 +44,19 @@ run_test() {
     local out_file="$3"
 
     echo "Running $label test..."
-    "$script" > "$out_file" 2>&1
+    echo "  Script: $script"
+    echo "  Output: $out_file"
+
+    resolved_script=$(command -v "$script")
+    if [[ -z "$resolved_script" || ! -x "$resolved_script" ]]; then
+        echo "ERROR: Command '$script' not found or not executable"
+        return 1
+    fi
+
+    "$resolved_script" > "$out_file" 2>&1
     echo "$label test complete."
 }
+
 
 # === Test Script Mapping ===
 declare -A test_map=(
@@ -98,12 +108,17 @@ for ((i = 1; i <= loops; i++)); do
     done
 
     elapsed_cycle=$((SECONDS - cycle_start))
-    echo "Elapsed time for cycle $i: ${elapsed_cycle}s"
+    minutes=$((elapsed_cycle / 60))
+    seconds=$((elapsed_cycle % 60))
+    printf "Elapsed time for cycle %d: %dm:%02ds\n" "$i" "$minutes" "$seconds"
     echo "=== Finished test cycle $i ==="
     echo
 done
 
 # === Total time summary ===
-total_elapsed=$((SECONDS - total_start))
+elapsed_cycle=$((SECONDS - cycle_start))
+cycle_min=$((elapsed_cycle / 60))
+cycle_sec=$((elapsed_cycle % 60))
+printf "Elapsed time for cycle %d: %dm:%02ds\n" "$i" "$cycle_min" "$cycle_sec"
 echo "=== All test cycles completed ==="
 echo "Total elapsed time: ${total_elapsed}s"
