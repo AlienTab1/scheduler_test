@@ -15,9 +15,9 @@ fi
 
 # === Map file prefixes to corresponding Python parser scripts ===
 declare -A parser_map=(
-    #["lat"]="latency_plot.py"
+    ["lat"]="latency_plot.py"
     ["thr"]="throughput_plot.py"
-    #["fai"]="fairness_plot.py"
+    ["fai"]="fairness_plot.py"
     ["sca"]="scalability_plot.py"
     #["res"]="responsiveness_plot.py"
     ["ctx"]="contextswitch_plot.py"

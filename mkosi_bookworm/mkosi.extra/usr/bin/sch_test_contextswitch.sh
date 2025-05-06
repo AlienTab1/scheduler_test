@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Scheduler Context Switching Test using vmstat and pidstat (thread-aware)
+# Scheduler Context Switching Test using pidstat (thread-aware)
 
 threads=$(grep -c ^processor /proc/cpuinfo)
 duration=30

@@ -59,6 +59,7 @@ run_test() {
 
 
 # === Test Script Mapping ===
+# script is expecting that test script will be available in $PATH variable
 declare -A test_map=(
     ["lat"]="sch_test_latency.sh"
     ["thr"]="sch_test_throughput.sh"
@@ -103,7 +104,7 @@ for ((i = 1; i <= loops; i++)); do
         if $run_all || [[ " ${tests[*]} " =~ " ${key} " ]]; then
             output_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}.txt"
             run_test "$key" "${test_map[$key]}" "$output_file"
-            sleep 3
+            sleep 15
         fi
     done
 
@@ -116,9 +117,9 @@ for ((i = 1; i <= loops; i++)); do
 done
 
 # === Total time summary ===
-elapsed_cycle=$((SECONDS - cycle_start))
-cycle_min=$((elapsed_cycle / 60))
-cycle_sec=$((elapsed_cycle % 60))
-printf "Elapsed time for cycle %d: %dm:%02ds\n" "$i" "$cycle_min" "$cycle_sec"
+elapsed_test=$((SECONDS - cycle_start))
+test_min=$((elapsed_cycle / 60))
+test_sec=$((elapsed_cycle % 60))
 echo "=== All test cycles completed ==="
-echo "Total elapsed time: ${total_elapsed}s"
+printf "Elapsed time of Scheduler testing: %dm:%02ds\n" "$i" "$test_min" "$test_sec"
+

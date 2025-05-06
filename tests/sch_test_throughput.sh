@@ -2,7 +2,7 @@
 
 # Scheduler Throughput Test Script (Sysbench + Stress-ng)
 
-threads=$(nproc)
+threads=$(grep processor /proc/cpuinfo | wc -l)
 echo "Current CPU threads: $threads"
 
 # Scenario 1: 30s, no load

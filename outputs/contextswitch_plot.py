@@ -51,6 +51,14 @@ if cpu_threads is None or duration is None:
 
 # ----------------------- Step 2: Parse TGID -> (sample_index, nvcswch/s) -----------------------
 
+# parsed sample:
+# 16:31:51      UID      TGID       TID   cswch/s nvcswch/s  Command
+# 16:31:53        0      1034         -      0.00      7.00  stress-ng-cpu
+#
+# Warrning! be aware of system time setting - this sample will result in error
+# 12:39:14 AM  1000    229801         -      0.00     29.84  stress-ng-cpu
+#
+
 tgid_data = defaultdict(list)
 sample_counter = 1
 lines_in_current_sample = 0
@@ -58,12 +66,14 @@ lines_in_current_sample = 0
 for line in stress_lines:
     parts = line.split()
     if len(parts) < 7:
+        #print("Malformed line")
         continue  # malformed line
 
-    tgid = parts[3]
+    tgid = parts[2]
     try:
-        nvcswch = float(parts[6])
+        nvcswch = float(parts[5])
     except ValueError:
+        #print("Data parsing error - nvcswch")
         continue
 
     tgid_data[tgid].append((sample_counter, nvcswch))

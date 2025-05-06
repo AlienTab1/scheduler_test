@@ -56,6 +56,8 @@ for match in pattern.finditer(text):
 
 SKIP_FIRST = 1  # <<< Skip first N samples to avoid initial warm-up instability (set to 0 if not wanted)
 
+max_c = max(c for samples in thread_data.values() for c, _ in samples)
+
 plt.figure(figsize=(8.15, 6.00))
 
 # Plot curve for each thread
@@ -66,7 +68,7 @@ for tid in sorted(thread_data.keys()):
 
 plt.xlabel("Iteration (C)")
 plt.ylabel("Avg Latency (us)")
-plt.xlim(0, 10000)
+plt.xlim(0, max_c)
 plt.grid(True)
 plt.legend(loc="upper right", ncol=2, fontsize="small")
 plt.tight_layout()
