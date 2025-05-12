@@ -16,7 +16,7 @@ sleep 0.3
 echo "Starting cyclictest latency measurement..."
 # Run cyclictest in the background, output to stdout
 cyclictest --mlockall --nsecs --priority=80 \
-  --interval=200 --distance=0 --loop=100000 \
+  --interval=200 --distance=0 --loop=800000 \
   --threads=$threads --affinity=0-$(($threads - 1)) &
 ct_pid=$!
 
