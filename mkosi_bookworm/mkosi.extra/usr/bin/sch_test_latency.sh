@@ -6,20 +6,12 @@ echo "Scheduler Latency Test"
 threads=$(grep -c ^processor /proc/cpuinfo)
 echo "Current CPU threads: $threads"
 
-
-
-
-
-exit 0
-
-
-
 echo "Starting hackbench..."
 hackbench -g 20 -l 10000 -s 512 -f 25 -T &
 hb_pid=$!
 
 # Give hackbench a small head start
-sleep 0.5
+sleep 0.3
 
 echo "Starting cyclictest latency measurement..."
 # Run cyclictest in the background, output to stdout
@@ -35,7 +27,7 @@ wait $hb_pid
 echo "Hackbench finished. Stopping cyclictest..."
 kill -INT $ct_pid 2>/dev/null
 
-# Wait for cyclictest to flush output
+# Wait for cyclictest aflush output
 wait $ct_pid 2>/dev/null
 
 echo "Latency test complete."

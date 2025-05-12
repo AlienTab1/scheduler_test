@@ -13,7 +13,6 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     echo "        thr   = throughput"
     echo "        fai   = fairness"
     echo "        sca   = scalability"
-    echo "        res   = responsiveness"
     echo "        ctx   = context switching"
     echo "        star  = starvation detection"
     exit 0
@@ -45,7 +44,7 @@ run_test() {
 
     echo "Running $label test..."
     echo "  Script: $script"
-    echo "  Output: $out_file"
+    echo "  Output: ${out_file}.txt"
 
     resolved_script=$(command -v "$script")
     if [[ -z "$resolved_script" || ! -x "$resolved_script" ]]; then
@@ -53,10 +52,25 @@ run_test() {
         return 1
     fi
 
-    "$resolved_script" > "$out_file" 2>&1
+    # If the test is latency, start CPU temperature logger
+    if [[ "$label" == "lat" ]]; then
+        echo "  Starting CPU temperature logger..."
+        ( sch_test_cpu_temp.sh 0.1 > "${out_file}_temp.txt" 2>&1 ) &
+        cpu_temp_pid=$!
+    fi
+
+    "$resolved_script" > "${out_file}.txt" 2>&1
+
+    # Stop temperature logger if it was started
+    if [[ "$label" == "lat" && -n "$cpu_temp_pid" ]]; then
+        echo "  Stopping CPU temperature logger..."
+        kill -INT "$cpu_temp_pid" 2>/dev/null
+    fi
+
     echo "$label test complete."
 }
 
+utput_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}"
 
 # === Test Script Mapping ===
 # script is expecting that test script will be available in $PATH variable
@@ -65,7 +79,6 @@ declare -A test_map=(
     ["thr"]="sch_test_throughput.sh"
     ["fai"]="sch_test_fairness.sh"
     ["sca"]="sch_test_scalability.sh"
-    ["res"]="sch_test_responsiveness.sh"
     ["ctx"]="sch_test_contextswitch.sh"
     ["star"]="sch_test_starvation.sh"
 )
@@ -102,13 +115,13 @@ for ((i = 1; i <= loops; i++)); do
     # --- Run selected or all tests ---
     for key in "${!test_map[@]}"; do
         if $run_all || [[ " ${tests[*]} " =~ " ${key} " ]]; then
-            output_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}.txt"
+            output_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}"
             run_test "$key" "${test_map[$key]}" "$output_file"
             sleep 15
         fi
     done
 
-    elapsed_cycle=$((SECONDS - cycle_start))
+    elapsed_cycle=$((SECONDS - cycle_start - 15))
     minutes=$((elapsed_cycle / 60))
     seconds=$((elapsed_cycle % 60))
     printf "Elapsed time for cycle %d: %dm:%02ds\n" "$i" "$minutes" "$seconds"
@@ -118,8 +131,8 @@ done
 
 # === Total time summary ===
 elapsed_test=$((SECONDS - total_start))
-test_min=$((elapsed_cycle / 60))
-test_sec=$((elapsed_cycle % 60))
+test_min=$((elapsed_test / 60))
+test_sec=$((elapsed_test % 60))
 
 echo "=== All test cycles completed ==="
 printf "Elapsed time of Scheduler testing: %dm:%02ds\n" "$test_min" "$test_sec"

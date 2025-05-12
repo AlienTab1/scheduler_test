@@ -3,99 +3,121 @@ import sys
 import os
 from collections import defaultdict
 import matplotlib.pyplot as plt
+import numpy as np
 
 def print_help():
     """Print usage help and exit."""
-    print("Usage: python latency_plot.py <input_file> <output_directory>")
+    print("Usage: python latency_plot.py <latency_input_file> <temperature_input_file> <output_directory>")
     sys.exit(1)
 
 # ---- Step 1: Parse arguments ----
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     print("Error: Missing arguments.\n")
     print_help()
 
-input_file = sys.argv[1]
-output_dir = sys.argv[2]
+latency_file = sys.argv[1]
+temp_file = sys.argv[2]
+output_dir = sys.argv[3]
 
-if not os.path.isfile(input_file):
-    print(f"Error: File not found: {input_file}")
+if not os.path.isfile(latency_file):
+    print(f"Error: Latency file not found: {latency_file}")
+    sys.exit(1)
+
+if not os.path.isfile(temp_file):
+    print(f"Error: Temperature file not found: {temp_file}")
     sys.exit(1)
 
 if not os.path.isdir(output_dir):
     print(f"Error: Output directory not found: {output_dir}")
     sys.exit(1)
 
-# Prepare output filenames based on input filename
-basename = os.path.splitext(os.path.basename(input_file))[0]
-output_plot = os.path.join(output_dir, f"{basename}_latency_plot.png")
+# ---- Step 2: Prepare output filenames ----
+basename = os.path.splitext(os.path.basename(latency_file))[0]
+output_plot = os.path.join(output_dir, f"{basename}_latency_temp_plot.png")
 output_stats = os.path.join(output_dir, f"{basename}_latency_stats.txt")
 
-# ---- Step 2: Parse input file ----
-with open(input_file, "r") as file:
+# ---- Step 3: Parse latency data ----
+with open(latency_file, "r") as file:
     text = file.read()
 
-# Regex pattern to match each latency report line
 pattern = re.compile(r"T:\s*(\d+).*?C:\s*(\d+).*?Min:\s*(\d+).*?Avg:\s*(\d+).*?Max:\s*(\d+)", re.MULTILINE)
+thread_data = defaultdict(list)
 
-thread_data = defaultdict(list)  # For plotting: (counter C, avg latency)
-
-# Parse all matches in the input
 for match in pattern.finditer(text):
     tid = int(match.group(1))   # Thread ID
-    c = int(match.group(2))     # Counter C (number of iterations)
-    min_v = int(match.group(3)) # Minimum latency
-    avg = int(match.group(4))   # Average latency
-    max_v = int(match.group(5)) # Maximum latency
-
+    c = int(match.group(2))     # Iteration count
+    min_v = int(match.group(3))
+    avg = int(match.group(4))
+    max_v = int(match.group(5))
     if c == 0:
-        continue  # Ignore invalid measurements
+        continue
+    thread_data[tid].append((c, avg))
 
-    thread_data[tid].append((c, avg))  # Store real C value for correct plotting
+# ---- Step 4: Parse temperature data ----
+temp_values = []
+with open(temp_file, "r") as f:
+    for line in f:
+        match = re.search(r"CPU_Temperature:\s*(\d+)", line)
+        if match:
+            temp_values.append(int(match.group(1)))
 
-# ---- Step 3: Generate plot ----
-
-SKIP_FIRST = 1  # <<< Skip first N samples to avoid initial warm-up instability (set to 0 if not wanted)
-
+# ---- Step 5: Determine max X for latency and stretch temp to fit ----
+SKIP_FIRST = 1  # Skip initial samples if needed
 max_c = max(c for samples in thread_data.values() for c, _ in samples)
 
-plt.figure(figsize=(8.15, 6.00))
+# Spread temperature samples evenly across latency X range
+if len(temp_values) > 1:
+    temp_x = np.linspace(0, max_c, len(temp_values))
+else:
+    temp_x = [0]
 
-# Plot curve for each thread
+# ---- Step 6: Generate plot ----
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+# Plot latency curves for each thread
 for tid in sorted(thread_data.keys()):
     if len(thread_data[tid]) > SKIP_FIRST:
-        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])  # Skip first N points
-        plt.plot(x_vals, y_vals, label=f"T{tid}")
+        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])
+        ax1.plot(x_vals, y_vals, label=f"T{tid}")
 
-plt.xlabel("Iteration (C)")
-plt.ylabel("Avg Latency (us)")
-plt.xlim(0, max_c)
-plt.grid(True)
-plt.legend(loc="upper right", ncol=2, fontsize="small")
+ax1.set_xlabel("Iteration (C)")
+ax1.set_ylabel("Avg Latency (us)")
+ax1.set_xlim(0, max_c)
+ax1.grid(True)
+ax1.legend(loc="upper left", ncol=2, fontsize="small")
+
+# Add temperature as second Y-axis
+ax2 = ax1.twinx()
+ax2.plot(temp_x, temp_values, color='red', linewidth=1.5, label='Temperature (°C)')
+ax2.set_ylabel("Temperature (°C)", color='red')
+ax2.tick_params(axis='y', labelcolor='red')
+
+# Add combined legends
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right', fontsize="small")
+
+plt.title("Latency Over Time with Temperature Overlay")
 plt.tight_layout()
-
 plt.savefig(output_plot, dpi=150)
 print(f"Chart saved as {output_plot}")
 
-# ---- Step 4: Final statistics based ONLY on last cyclictest burst ----
+# ---- Step 7: Final latency statistics ----
 all_mins = []
 all_maxs = []
 all_avgs = []
-
-# Find only the last set of statistics
-matches = list(pattern.finditer(text))
 last_tid_values = {}
 
+matches = list(pattern.finditer(text))
 for match in matches:
     tid = int(match.group(1))
     c = int(match.group(2))
     min_v = int(match.group(3))
     avg = int(match.group(4))
     max_v = int(match.group(5))
-
     if c > 0:
-        last_tid_values[tid] = (min_v, avg, max_v)  # Always overwrite to capture the latest valid stats
+        last_tid_values[tid] = (min_v, avg, max_v)
 
-# Write statistics to output text file
 with open(output_stats, "w") as f:
     f.write("Latency Statistics per Thread (final cyclictest report only):\n")
     for tid in sorted(last_tid_values.keys()):
