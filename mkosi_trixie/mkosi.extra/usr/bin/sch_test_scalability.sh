@@ -17,9 +17,9 @@
 #   ./sch_test_scalability.sh > scalability_results.txt
 # ==============================================================================
 
-# === Detect total number of logical CPU threads ===
+# === Detect total number of logical CPUs ===
 threads=$(grep -c ^processor /proc/cpuinfo)
-echo "Current CPU threads: $threads"
+echo "Current logical CPUs: $threads"
 
 # === Test duration per thread level ===
 duration=30

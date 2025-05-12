@@ -7,14 +7,14 @@
 # context switches per thread while the system is under load using `stress-ng`.
 # ==============================================
 
-# Determine the number of CPU threads available on the system
+# Determine the number of logical CPUs available on the system
 threads=$(grep -c ^processor /proc/cpuinfo)
 
 # Define how long the test should run (in seconds)
 duration=30
 
 # Display test parameters
-echo "Current CPU threads: $threads"
+echo "Current logical CPUs: $threads"
 echo "Test duration: $duration seconds"
 echo "=== Scheduler Context Switching Test ==="
 

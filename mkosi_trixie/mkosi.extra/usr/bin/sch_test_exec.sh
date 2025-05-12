@@ -39,7 +39,7 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 fi
 
 # === Configuration ===
-threads=$(grep -c ^processor /proc/cpuinfo)      # Detect number of logical CPU threads
+threads=$(grep -c ^processor /proc/cpuinfo)      # Detect number of logical CPUs 
 kernel_version=$(uname -r)                       # Get running kernel version
 output_base="/media/output"                      # Root output directory
 loops=1                                           # Default loop count
@@ -74,8 +74,8 @@ run_test() {
 
     # Start CPU temperature logger in the background for latency test
     if [[ "$label" == "lat" ]]; then
-        echo "  Starting CPU temperature logger..."
-        ( sch_test_cpu_temp.sh 0.1 > "${out_file}_temp.txt" 2>&1 ) &
+        echo "  Starting CPU temp+freq logger..."
+        ( nice -n -5 sch_test_cpu_temp.sh 0.1 > "${out_file}_temp.txt" 2>&1 ) &
         cpu_temp_pid=$!
     fi
 
@@ -84,7 +84,7 @@ run_test() {
 
     # Stop temp logger cleanly
     if [[ "$label" == "lat" && -n "$cpu_temp_pid" ]]; then
-        echo "  Stopping CPU temperature logger..."
+        echo "  Stopping CPU temp+freq logger..."
         kill -INT "$cpu_temp_pid" 2>/dev/null
     fi
 
@@ -134,12 +134,12 @@ for ((i = 1; i <= loops; i++)); do
         if $run_all || [[ " ${tests[*]} " =~ " ${key} " ]]; then
             output_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}"
             run_test "$key" "${test_map[$key]}" "$output_file"
-            sleep 15  # Cooldown between tests
+            sleep 60  # Cooldown between tests
         fi
     done
 
     # --- Report cycle time ---
-    elapsed_cycle=$((SECONDS - cycle_start - 15))
+    elapsed_cycle=$((SECONDS - cycle_start))
     minutes=$((elapsed_cycle / 60))
     seconds=$((elapsed_cycle % 60))
     printf "Elapsed time for cycle %d: %dm:%02ds\n" "$i" "$minutes" "$seconds"

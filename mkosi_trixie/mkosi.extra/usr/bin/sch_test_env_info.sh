@@ -47,6 +47,3 @@ for param in /proc/sys/kernel/sched*; do
         echo "$(basename "$param"): $(cat "$param")"
     fi
 done
-
-
-koko

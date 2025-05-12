@@ -24,9 +24,9 @@
 #   ./sch_test_throughput.sh > throughput_results.txt
 # ==============================================================================
 
-# === Detect number of logical CPU threads ===
+# === Detect number of logical CPUs ===
 threads=$(grep -c ^processor /proc/cpuinfo)
-echo "Current CPU threads: $threads"
+echo "Current logical CPUs: $threads"
 
 # === Scenario 1: 30 seconds, no background load ===
 echo

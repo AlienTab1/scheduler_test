@@ -4,6 +4,8 @@ import os
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.ndimage import gaussian_filter1d
+
 
 def print_help():
     """Print usage help and exit."""
@@ -34,6 +36,7 @@ if not os.path.isdir(output_dir):
 # ---- Step 2: Prepare output filenames ----
 basename = os.path.splitext(os.path.basename(latency_file))[0]
 output_plot = os.path.join(output_dir, f"{basename}_latency_temp_plot.png")
+output_plot_latency_only = os.path.join(output_dir, f"{basename}_latency_only_plot.png")
 output_stats = os.path.join(output_dir, f"{basename}_latency_stats.txt")
 
 # ---- Step 3: Parse latency data ----
@@ -44,8 +47,8 @@ pattern = re.compile(r"T:\s*(\d+).*?C:\s*(\d+).*?Min:\s*(\d+).*?Avg:\s*(\d+).*?M
 thread_data = defaultdict(list)
 
 for match in pattern.finditer(text):
-    tid = int(match.group(1))   # Thread ID
-    c = int(match.group(2))     # Iteration count
+    tid = int(match.group(1))
+    c = int(match.group(2))
     min_v = int(match.group(3))
     avg = int(match.group(4))
     max_v = int(match.group(5))
@@ -62,19 +65,22 @@ with open(temp_file, "r") as f:
             temp_values.append(int(match.group(1)))
 
 # ---- Step 5: Determine max X for latency and stretch temp to fit ----
-SKIP_FIRST = 1  # Skip initial samples if needed
+SKIP_FIRST = 1
 max_c = max(c for samples in thread_data.values() for c, _ in samples)
 
-# Spread temperature samples evenly across latency X range
 if len(temp_values) > 1:
     temp_x = np.linspace(0, max_c, len(temp_values))
+    smooth_window = 33
+    temp_avg = gaussian_filter1d(temp_values, sigma=50)
+    temp_avg_x = temp_x  # Same X-axis as original temperature
 else:
     temp_x = [0]
+    temp_avg = []
+    temp_avg_x = [0]
 
-# ---- Step 6: Generate plot ----
+# ---- Step 6a: Generate latency + temperature plot ----
 fig, ax1 = plt.subplots(figsize=(10, 6))
 
-# Plot latency curves for each thread
 for tid in sorted(thread_data.keys()):
     if len(thread_data[tid]) > SKIP_FIRST:
         x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])
@@ -83,16 +89,18 @@ for tid in sorted(thread_data.keys()):
 ax1.set_xlabel("Iteration (C)")
 ax1.set_ylabel("Avg Latency (us)")
 ax1.set_xlim(0, max_c)
+ax1.set_ylim(bottom=0)
 ax1.grid(True)
 ax1.legend(loc="upper left", ncol=2, fontsize="small")
 
-# Add temperature as second Y-axis
 ax2 = ax1.twinx()
-ax2.plot(temp_x, temp_values, color='red', linewidth=1.5, label='Temperature (°C)')
+ax2.plot(temp_x, temp_values, color='red', linewidth=1.5, label='CPU temp')
+#if len(temp_avg) > 0:
+#    ax2.plot(temp_avg_x, temp_avg, color='black', linewidth=1.5, label='Temperature (smoothed)')
+
 ax2.set_ylabel("Temperature (°C)", color='red')
 ax2.tick_params(axis='y', labelcolor='red')
 
-# Add combined legends
 lines1, labels1 = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right', fontsize="small")
@@ -101,6 +109,24 @@ plt.title("Latency Over Time with Temperature Overlay")
 plt.tight_layout()
 plt.savefig(output_plot, dpi=150)
 print(f"Chart saved as {output_plot}")
+
+# ---- Step 6b: Generate latency-only plot ----
+plt.figure(figsize=(10, 6))
+for tid in sorted(thread_data.keys()):
+    if len(thread_data[tid]) > SKIP_FIRST:
+        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])
+        plt.plot(x_vals, y_vals, label=f"T{tid}")
+
+plt.xlabel("Iteration (C)")
+plt.ylabel("Avg Latency (us)")
+plt.title("Latency Over Time (No Temperature)")
+plt.xlim(0, max_c)
+plt.ylim(bottom=0)
+plt.grid(True)
+plt.legend(loc="upper right", ncol=2, fontsize="small")
+plt.tight_layout()
+plt.savefig(output_plot_latency_only, dpi=150)
+print(f"Latency-only chart saved as {output_plot_latency_only}")
 
 # ---- Step 7: Final latency statistics ----
 all_mins = []

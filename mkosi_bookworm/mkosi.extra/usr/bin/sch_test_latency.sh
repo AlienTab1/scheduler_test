@@ -25,9 +25,9 @@
 
 echo "Scheduler Latency Test"
 
-# === Detect the number of logical CPU threads ===
+# === Detect the number of logical CPUs ===
 threads=$(grep -c ^processor /proc/cpuinfo)
-echo "Current CPU threads: $threads"
+echo "Current logical CPUs: $threads"
 
 # === Launch hackbench to generate CPU load in background ===
 # -g 20: number of groups (each group = 2 communicating processes)
