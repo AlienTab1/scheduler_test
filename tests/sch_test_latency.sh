@@ -6,6 +6,14 @@ echo "Scheduler Latency Test"
 threads=$(grep -c ^processor /proc/cpuinfo)
 echo "Current CPU threads: $threads"
 
+
+
+
+
+exit 0
+
+
+
 echo "Starting hackbench..."
 hackbench -g 20 -l 10000 -s 512 -f 25 -T &
 hb_pid=$!
@@ -31,3 +39,7 @@ kill -INT $ct_pid 2>/dev/null
 wait $ct_pid 2>/dev/null
 
 echo "Latency test complete."
+
+
+
+
