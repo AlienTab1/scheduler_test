@@ -37,8 +37,8 @@ get_cpu_temp_file() {
                 # Check if the label file exists
                 if [[ -f "$label_file" ]]; then
                     label=$(cat "$label_file")
-                    # Return the file if it matches Package id 0 or Core 0 (Intel main temperatures)
-                    if [[ "$label" == "Package id 0" ]] || [[ "$label" == "Core 0" ]]; then
+                    # Return the file if it matches Package id 0 (Intel main temperatures)
+                    if [[ "$label" == "Package id 0" ]]; then
                         echo "$temp_input"
                         return
                     fi
