@@ -136,7 +136,7 @@ for ((i = 1; i <= loops; i++)); do
         if $run_all || [[ " ${tests[*]} " =~ " ${key} " ]]; then
             output_file="${run_dir}/sch_${key}_output_${kernel_version}_${threads}"
             run_test "$key" "${test_map[$key]}" "$output_file"
-            sleep 60  # Cooldown between tests
+            sleep 30  # Cooldown between tests
         fi
     done
 

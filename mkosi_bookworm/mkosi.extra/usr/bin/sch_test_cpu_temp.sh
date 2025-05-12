@@ -20,6 +20,9 @@
 
 interval=${1:-1}  # Default interval is 1 second if not provided
 
+trap 'echo "$(date +%s) LOGGER STOPPED"; exit 0' INT TERM
+echo "$(date +%s) LOGGER STARTED"
+
 # Function to find the appropriate CPU temperature input file
 get_cpu_temp_file() {
     for hwmon in /sys/class/hwmon/hwmon*; do
