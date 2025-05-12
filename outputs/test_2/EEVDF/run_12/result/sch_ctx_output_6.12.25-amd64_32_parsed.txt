@@ -1,0 +1,630 @@
+Parsed nvcswch/s values per thread (Duration: 30s):
+
+Thread_0 (Tgid 4746):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 2 -> 2.00 cswch/s
+  Sample 4 -> 3.00 cswch/s
+  Sample 5 -> 1.98 cswch/s
+  Sample 6 -> 3.00 cswch/s
+  Sample 7 -> 1.98 cswch/s
+  Sample 7 -> 2.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 1.98 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 1.98 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 2.00 cswch/s
+  Sample 13 -> 0.99 cswch/s
+  Sample 14 -> 2.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Total: 30.74 cswch/s
+  Average: 1.81 cswch/s
+
+Thread_1 (Tgid 4747):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_2 (Tgid 4748):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 2.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 3 -> 5.00 cswch/s
+  Sample 4 -> 2.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.86 cswch/s
+  Total: 26.73 cswch/s
+  Average: 1.41 cswch/s
+
+Thread_3 (Tgid 4749):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_4 (Tgid 4750):
+  Sample 1 -> 14.15 cswch/s
+  Sample 2 -> 11.00 cswch/s
+  Sample 3 -> 4.00 cswch/s
+  Sample 3 -> 145.00 cswch/s
+  Sample 4 -> 4.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 2.97 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 11.00 cswch/s
+  Sample 7 -> 8.00 cswch/s
+  Sample 7 -> 3.96 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 5.00 cswch/s
+  Sample 8 -> 10.00 cswch/s
+  Sample 9 -> 12.00 cswch/s
+  Sample 9 -> 16.00 cswch/s
+  Sample 9 -> 13.86 cswch/s
+  Sample 10 -> 10.00 cswch/s
+  Sample 10 -> 13.00 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 5.94 cswch/s
+  Sample 12 -> 7.00 cswch/s
+  Sample 12 -> 13.00 cswch/s
+  Sample 12 -> 11.00 cswch/s
+  Sample 12 -> 10.00 cswch/s
+  Sample 13 -> 6.00 cswch/s
+  Sample 13 -> 17.82 cswch/s
+  Sample 14 -> 10.00 cswch/s
+  Sample 14 -> 16.00 cswch/s
+  Sample 15 -> 10.00 cswch/s
+  Sample 15 -> 13.15 cswch/s
+  Total: 407.85 cswch/s
+  Average: 13.16 cswch/s
+
+Thread_5 (Tgid 4751):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_6 (Tgid 4752):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_7 (Tgid 4753):
+  Sample 1 -> 12.26 cswch/s
+  Sample 2 -> 7.00 cswch/s
+  Sample 3 -> 9.00 cswch/s
+  Sample 3 -> 8.00 cswch/s
+  Sample 4 -> 8.00 cswch/s
+  Sample 5 -> 7.00 cswch/s
+  Sample 5 -> 8.91 cswch/s
+  Sample 5 -> 7.00 cswch/s
+  Sample 6 -> 10.00 cswch/s
+  Sample 7 -> 7.00 cswch/s
+  Sample 7 -> 7.92 cswch/s
+  Sample 7 -> 7.00 cswch/s
+  Sample 8 -> 11.00 cswch/s
+  Sample 8 -> 7.00 cswch/s
+  Sample 9 -> 10.00 cswch/s
+  Sample 9 -> 7.00 cswch/s
+  Sample 9 -> 8.91 cswch/s
+  Sample 10 -> 7.00 cswch/s
+  Sample 10 -> 10.00 cswch/s
+  Sample 11 -> 7.00 cswch/s
+  Sample 11 -> 10.89 cswch/s
+  Sample 12 -> 6.00 cswch/s
+  Sample 12 -> 10.00 cswch/s
+  Sample 12 -> 7.00 cswch/s
+  Sample 12 -> 10.00 cswch/s
+  Sample 13 -> 6.00 cswch/s
+  Sample 14 -> 9.90 cswch/s
+  Sample 14 -> 6.00 cswch/s
+  Sample 14 -> 13.00 cswch/s
+  Sample 15 -> 7.00 cswch/s
+  Sample 15 -> 8.44 cswch/s
+  Total: 261.23 cswch/s
+  Average: 8.43 cswch/s
+
+Thread_8 (Tgid 4754):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_9 (Tgid 4755):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_10 (Tgid 4756):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 11.00 cswch/s
+  Sample 3 -> 10.00 cswch/s
+  Sample 4 -> 11.00 cswch/s
+  Sample 5 -> 10.00 cswch/s
+  Sample 5 -> 9.90 cswch/s
+  Sample 5 -> 11.00 cswch/s
+  Sample 6 -> 12.00 cswch/s
+  Sample 7 -> 10.00 cswch/s
+  Sample 7 -> 11.88 cswch/s
+  Sample 7 -> 10.00 cswch/s
+  Sample 8 -> 10.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 3.00 cswch/s
+  Sample 9 -> 1.98 cswch/s
+  Sample 10 -> 2.00 cswch/s
+  Sample 10 -> 2.00 cswch/s
+  Sample 11 -> 10.00 cswch/s
+  Sample 11 -> 10.89 cswch/s
+  Sample 12 -> 11.00 cswch/s
+  Sample 12 -> 2.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 13 -> 6.00 cswch/s
+  Sample 13 -> 5.00 cswch/s
+  Sample 14 -> 3.96 cswch/s
+  Sample 14 -> 2.00 cswch/s
+  Sample 14 -> 2.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 15 -> 6.21 cswch/s
+  Total: 192.65 cswch/s
+  Average: 6.21 cswch/s
+
+Thread_11 (Tgid 4757):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 3 -> 3.00 cswch/s
+  Sample 4 -> 2.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 1.98 cswch/s
+  Sample 8 -> 2.00 cswch/s
+  Sample 9 -> 2.00 cswch/s
+  Sample 9 -> 1.98 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 1.98 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 13 -> 2.00 cswch/s
+  Sample 14 -> 0.99 cswch/s
+  Sample 14 -> 2.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Total: 30.82 cswch/s
+  Average: 1.62 cswch/s
+
+Thread_12 (Tgid 4758):
+  Sample 1 -> 3.77 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 2.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.46 cswch/s
+  Total: 14.21 cswch/s
+  Average: 1.29 cswch/s
+
+Thread_13 (Tgid 4759):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_14 (Tgid 4760):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_15 (Tgid 4761):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 16 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_16 (Tgid 4762):
+  Sample 1 -> 7.55 cswch/s
+  Sample 2 -> 3.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 1.00 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 1.10 cswch/s
+  Total: 33.63 cswch/s
+  Average: 1.35 cswch/s
+
+Thread_17 (Tgid 4763):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 16 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_18 (Tgid 4764):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 2.00 cswch/s
+  Sample 3 -> 2.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 2.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 0.99 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 0.99 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 8 -> 2.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 10 -> 1.98 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 1.00 cswch/s
+  Sample 11 -> 1.98 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 13 -> 2.00 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 0.99 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 14 -> 2.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 1.36 cswch/s
+  Total: 42.12 cswch/s
+  Average: 1.36 cswch/s
+
+Thread_19 (Tgid 4765):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 16 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_20 (Tgid 4766):
+  Sample 1 -> 3.77 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 16 -> 0.43 cswch/s
+  Total: 13.18 cswch/s
+  Average: 1.20 cswch/s
+
+Thread_21 (Tgid 4767):
+  Sample 1 -> 3.77 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 7 -> 0.99 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.46 cswch/s
+  Total: 14.20 cswch/s
+  Average: 1.18 cswch/s
+
+Thread_22 (Tgid 4768):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_23 (Tgid 4769):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.33 cswch/s
+  Total: 10.20 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_24 (Tgid 4770):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 4 -> 2.00 cswch/s
+  Sample 5 -> 0.99 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 0.99 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.56 cswch/s
+  Total: 17.35 cswch/s
+  Average: 1.24 cswch/s
+
+Thread_25 (Tgid 4771):
+  Sample 1 -> 3.77 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 5 -> 2.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 0.99 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 0.99 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 8 -> 2.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.80 cswch/s
+  Total: 24.53 cswch/s
+  Average: 1.29 cswch/s
+
+Thread_26 (Tgid 4772):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 11 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_27 (Tgid 4773):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 12 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_28 (Tgid 4774):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 12 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.40 cswch/s
+  Total: 12.21 cswch/s
+  Average: 1.11 cswch/s
+
+Thread_29 (Tgid 4775):
+  Sample 1 -> 0.94 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 12 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.27 cswch/s
+  Total: 8.19 cswch/s
+  Average: 0.91 cswch/s
+
+Thread_30 (Tgid 4776):
+  Sample 1 -> 1.89 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 1.00 cswch/s
+  Sample 8 -> 1.00 cswch/s
+  Sample 10 -> 0.99 cswch/s
+  Sample 12 -> 0.99 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 0.37 cswch/s
+  Total: 11.24 cswch/s
+  Average: 1.02 cswch/s
+
+Thread_31 (Tgid 4777):
+  Sample 1 -> 2.83 cswch/s
+  Sample 2 -> 1.00 cswch/s
+  Sample 3 -> 1.00 cswch/s
+  Sample 4 -> 1.00 cswch/s
+  Sample 5 -> 2.00 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 5 -> 0.99 cswch/s
+  Sample 5 -> 1.00 cswch/s
+  Sample 6 -> 2.00 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 7 -> 0.99 cswch/s
+  Sample 7 -> 1.00 cswch/s
+  Sample 8 -> 2.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 9 -> 1.00 cswch/s
+  Sample 10 -> 1.98 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 10 -> 1.00 cswch/s
+  Sample 11 -> 1.00 cswch/s
+  Sample 12 -> 1.98 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 12 -> 1.00 cswch/s
+  Sample 13 -> 2.00 cswch/s
+  Sample 13 -> 1.00 cswch/s
+  Sample 14 -> 0.99 cswch/s
+  Sample 14 -> 1.00 cswch/s
+  Sample 15 -> 2.00 cswch/s
+  Sample 15 -> 1.00 cswch/s
+  Sample 16 -> 1.30 cswch/s
+  Total: 40.06 cswch/s
+  Average: 1.29 cswch/s
+
+--- Overall Statistics ---
+Total CS across all threads: 1355.29 cswch/s
+Average per thread: 1.93 cswch/s

@@ -1,0 +1,21 @@
+Sysbench Scenario Statistics:
+Scenario 1: Sysbench (12 threads, 30s, no background load)
+  Total Time: 30.0009 s
+  Total Events: 346626
+  Events per Second: 11553.35
+
+Scenario 2: Sysbench (12 threads, 30s, with stress-ng background load)
+  Total Time: 30.004 s
+  Total Events: 235955
+  Events per Second: 7863.79
+
+Scenario 3: Sysbench (12 threads, 100s, no background load)
+  Total Time: 100.001 s
+  Total Events: 1154732
+  Events per Second: 11547.05
+
+Scenario 4: Sysbench (12 threads, 100s, with stress-ng background load)
+  Total Time: 100.0033 s
+  Total Events: 813919
+  Events per Second: 8138.82
+
