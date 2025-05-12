@@ -61,6 +61,7 @@ run_test() {
     local label=$1
     local script=$2
     local out_file="$3"
+    local cpu_temp_pid=0
 
     echo "Running $label test..."
     echo "  Script: $script"
@@ -83,9 +84,10 @@ run_test() {
     "$resolved_script" > "${out_file}.txt" 2>&1
 
     # Stop temp logger cleanly
-    if [[ "$label" == "lat" && -n "$cpu_temp_pid" ]]; then
-        echo "  Stopping CPU temp+freq logger..."
+    if [[ "$label" == "lat" && "$cpu_temp_pid" -ne 0 ]]; then
+        echo "  Stopping CPU temp+freq logger... PID: $cpu_temp_pid"
         kill -INT "$cpu_temp_pid" 2>/dev/null
+        wait "$cpu_temp_pid" 2>/dev/null
     fi
 
     echo "$label test complete."
