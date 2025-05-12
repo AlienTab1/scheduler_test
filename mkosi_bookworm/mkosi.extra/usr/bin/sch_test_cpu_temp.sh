@@ -1,6 +1,25 @@
 #!/bin/bash
 
-# Script for printing CPU temperature at adjustable intervals
+# ================================================================
+# CPU Temperature Logger with Interval Control
+# ------------------------------------------------
+# This script continuously logs CPU temperature readings
+# using the appropriate system sensors for AMD (k10temp) or Intel (coretemp).
+#
+# - The output includes temperature in °C, a sample counter, and a UNIX timestamp.
+# - The interval (in seconds) between samples can be set via the first CLI argument.
+# - Data is printed to standard output (can be redirected for logging).
+#
+# Usage:
+#   ./cpu_temp_logger.sh [interval_seconds]
+#
+# Example:
+#   ./cpu_temp_logger.sh 2    # logs temperature every 2 seconds
+#
+# Dependencies:
+#   - Access to /sys/class/hwmon (available on most Linux systems)
+#   - Supports both AMD (Tctl) and Intel (Package id 0) sensor names
+# ================================================================
 
 interval=${1:-1}  # Default interval is 1 second if no parameter is provided
 
@@ -37,8 +56,8 @@ get_cpu_temp_file() {
                 # Check if the label file exists
                 if [[ -f "$label_file" ]]; then
                     label=$(cat "$label_file")
-                    # Return the file if it matches Package id 0 or Core 0 (Intel main temperatures)
-                    if [[ "$label" == "Package id 0" ]] || [[ "$label" == "Core 0" ]]; then
+                    # Return the file if it matches Package id 0 (Intel main temperatures)
+                    if [[ "$label" == "Package id 0" ]]; then
                         echo "$temp_input"
                         return
                     fi
