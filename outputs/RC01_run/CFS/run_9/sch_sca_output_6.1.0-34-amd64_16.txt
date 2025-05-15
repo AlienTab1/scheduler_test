@@ -1,0 +1,170 @@
+Current logical CPUs: 16
+=== Scheduler Scalability Test ===
+Test duration per run: 30s
+
+>> Running sysbench with 1 threads
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  4022.80
+
+General statistics:
+    total time:                          30.0004s
+    total number of events:              120689
+
+Latency (ms):
+         min:                                    0.25
+         avg:                                    0.25
+         max:                                    2.89
+         95th percentile:                        0.25
+         sum:                                29992.93
+
+Threads fairness:
+    events (avg/stddev):           120689.0000/0.00
+    execution time (avg/stddev):   29.9929/0.00
+
+
+>> Running sysbench with 2 threads
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 2
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  6317.06
+
+General statistics:
+    total time:                          30.0003s
+    total number of events:              189520
+
+Latency (ms):
+         min:                                    0.25
+         avg:                                    0.32
+         max:                                    3.11
+         95th percentile:                        0.40
+         sum:                                59980.84
+
+Threads fairness:
+    events (avg/stddev):           94760.0000/8.00
+    execution time (avg/stddev):   29.9904/0.00
+
+
+>> Running sysbench with 4 threads
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 4
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 10017.88
+
+General statistics:
+    total time:                          30.0005s
+    total number of events:              300560
+
+Latency (ms):
+         min:                                    0.29
+         avg:                                    0.40
+         max:                                    4.39
+         95th percentile:                        0.51
+         sum:                               119959.43
+
+Threads fairness:
+    events (avg/stddev):           75140.0000/130.64
+    execution time (avg/stddev):   29.9899/0.00
+
+
+>> Running sysbench with 8 threads
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 8
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 15823.01
+
+General statistics:
+    total time:                          30.0006s
+    total number of events:              474733
+
+Latency (ms):
+         min:                                    0.29
+         avg:                                    0.51
+         max:                                    4.56
+         95th percentile:                        0.68
+         sum:                               239911.57
+
+Threads fairness:
+    events (avg/stddev):           59341.6250/974.24
+    execution time (avg/stddev):   29.9889/0.00
+
+
+>> Running sysbench with 16 threads
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 16
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 20854.52
+
+General statistics:
+    total time:                          30.0006s
+    total number of events:              625680
+
+Latency (ms):
+         min:                                    0.31
+         avg:                                    0.77
+         max:                                   32.39
+         95th percentile:                        1.47
+         sum:                               479848.76
+
+Threads fairness:
+    events (avg/stddev):           39105.0000/9571.34
+    execution time (avg/stddev):   29.9905/0.00
+
+
+=== Scalability test complete ===

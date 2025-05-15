@@ -77,9 +77,12 @@ columns = ["timestamp", "starttime", "pid", "nice", "utime", "stime", "cpu_time"
 df = pd.DataFrame(records, columns=columns)
 
 # ------------------------- Align start time -------------------------
-boot_time = df["timestamp"].min() - (df["starttime"].min() / clk_tck)
-df["time_sec"] = df["timestamp"] - boot_time
-df["start_sec"] = boot_time + (df["starttime"] / clk_tck)
+#boot_time = df["timestamp"].min() - (df["starttime"].min() / clk_tck)
+#df["time_sec"] = df["timestamp"] - boot_time
+#df["start_sec"] = boot_time + (df["starttime"] / clk_tck)
+
+df["time_sec"] = df["timestamp"] - (df["starttime"] / clk_tck)
+
 
 # ------------------------- Plot CPU Time Progression -------------------------
 plt.figure(figsize=(16, 9))
@@ -91,6 +94,10 @@ plt.title("CPU Time Progression per PID")
 plt.xlabel("Wall Clock Time (seconds)")
 plt.ylabel("CPU Time (seconds)")
 plt.grid(True, linestyle='--', alpha=0.5)
+
+# Hide offset label like "+1.747e9"
+plt.gca().xaxis.get_offset_text().set_visible(False)
+
 custom_lines = [
     plt.Line2D([0], [0], color='tab:blue', lw=2, label='High-priority (nice -10)'),
     plt.Line2D([0], [0], color='tab:red', lw=2, label='Low-priority (nice 19)')

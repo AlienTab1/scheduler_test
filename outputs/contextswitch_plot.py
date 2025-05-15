@@ -38,10 +38,10 @@ with open(input_file, "r") as f:
     for line in f:
         stripped = line.strip()
 
-        if "Current CPU threads:" in stripped:
-            cpu_threads = int(stripped.split(":")[1])
+        if "Current logical CPUs:" in stripped:
+            cpu_threads = int(stripped.split(":")[1].strip())
         elif "Test duration:" in stripped:
-            duration = int(stripped.split(":")[1].split()[0])
+            duration = int(stripped.split(":")[1].strip().split()[0])
         elif "stress-ng-cpu" in stripped and not "|__" in stripped:
             stress_lines.append(stripped)
 

@@ -1,0 +1,27 @@
+Latency Statistics per Thread (last reported value):
+T 0 -> Min: 3791 us, Max: 75822 us, Avg: 6829.00 us
+T 1 -> Min: 3393 us, Max: 7831924 us, Avg: 6396.00 us
+T 2 -> Min: 3428 us, Max: 92507 us, Avg: 6753.00 us
+T 3 -> Min: 3626 us, Max: 85188 us, Avg: 6646.00 us
+T 4 -> Min: 3510 us, Max: 172420 us, Avg: 7059.00 us
+T 5 -> Min: 3933 us, Max: 83955 us, Avg: 6905.00 us
+T 6 -> Min: 4106 us, Max: 204652 us, Avg: 7520.00 us
+T 7 -> Min: 3598 us, Max: 86475 us, Avg: 6837.00 us
+T 8 -> Min: 3425 us, Max: 94615 us, Avg: 6920.00 us
+T 9 -> Min: 3665 us, Max: 73875 us, Avg: 6809.00 us
+T10 -> Min: 3609 us, Max: 77696 us, Avg: 6851.00 us
+T11 -> Min: 3689 us, Max: 72995 us, Avg: 6631.00 us
+
+Overall Latency:
+Min: 3393 us
+Max: 7831924 us
+Avg: 6846.33 us
+
+Temperature:
+Min: 48 °C
+Max: 61.666666666666664 °C
+Avg: 59.88 °C
+
+CPU Frequencies (GHz):
+CPU0–5 Avg: 3.61 GHz
+CPU6–11 Avg: 3.64 GHz

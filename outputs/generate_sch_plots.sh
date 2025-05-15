@@ -38,7 +38,6 @@ for run_dir in "$ROOT_DIR"/run_*/; do
         for file in "$run_dir"/${pattern}*.txt; do
             if [[ -f "$file" ]]; then
                 if [[ "$label" == "lat" ]]; then
-                    # Look for matching temperature log file
                     temp_file="${file%.txt}_temp.txt"
                     if [[ -f "$temp_file" ]]; then
                         echo "   → Running $parser on $(basename "$file") + $(basename "$temp_file")"
@@ -46,11 +45,12 @@ for run_dir in "$ROOT_DIR"/run_*/; do
                     else
                         echo "   → Skipping: missing temperature log for $(basename "$file")"
                     fi
+                else
+                    echo "   → Running $parser on $(basename "$file")"
+                    python3 "$parser" "$file" "$result_dir"
                 fi
-            else
-                echo "   → Running $parser on $(basename "$file")"
-                python3 "$parser" "$file" "$result_dir"
             fi
         done
+
     done
 done

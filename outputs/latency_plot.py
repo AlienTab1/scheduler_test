@@ -55,8 +55,8 @@ for match in pattern.finditer(text):
     thread_data[tid].append((c, avg))
     last_tid_values[tid] = (min_v, avg, max_v)
 
-# ---- Step 4: Parse temperature and frequency data (universal CPU splitting) ----
-grouped_data = defaultdict(lambda: {'temps': [], 'group_a': [], 'group_b': []})
+# ---- Step 4: Parse temperature and frequency data ----
+grouped_data = defaultdict(lambda: {'temps': [], 'cpu_freqs': []})
 all_cpu_ids = set()
 
 with open(temp_file, 'r') as f:
@@ -65,63 +65,86 @@ with open(temp_file, 'r') as f:
         temp_match = re.search(r'CPU_Temperature: (\d+)', line)
         if not ts_match or not temp_match:
             continue
+
         timestamp = int(ts_match.group(1))
         temperature = int(temp_match.group(1))
 
         cpu_matches = re.findall(r'cpu(\d+): (\d+)kHz', line)
+        if not cpu_matches:
+            continue
+
         cpu_freqs = {int(cpu_id): int(freq) for cpu_id, freq in cpu_matches}
         all_cpu_ids.update(cpu_freqs.keys())
 
-        sorted_cpu_ids = sorted(all_cpu_ids)
-        mid_index = len(sorted_cpu_ids) // 2
-        group_a_ids = sorted_cpu_ids[:mid_index]
-        group_b_ids = sorted_cpu_ids[mid_index:]
-
         group = grouped_data[timestamp]
         group['temps'].append(temperature)
-        group['group_a'].append(mean([cpu_freqs[cpu] for cpu in group_a_ids if cpu in cpu_freqs]) / 1e6)
-        group['group_b'].append(mean([cpu_freqs[cpu] for cpu in group_b_ids if cpu in cpu_freqs]) / 1e6)
+        group['cpu_freqs'].append(cpu_freqs)
 
-# Time-aligned data
+if not grouped_data:
+    print("Error: No valid temperature/frequency data found.")
+    sys.exit(1)
+
+# ---- Step 5: Compute aligned data ----
 sorted_ts = sorted(grouped_data.keys())
 base_ts = sorted_ts[0]
 time_axis = [ts - base_ts for ts in sorted_ts]
-avg_temps = [mean(grouped_data[ts]['temps']) for ts in sorted_ts]
-avg_group_a = [mean(grouped_data[ts]['group_a']) for ts in sorted_ts]
-avg_group_b = [mean(grouped_data[ts]['group_b']) for ts in sorted_ts]
 
-# Dynamic labels for CPU groups
 sorted_cpu_ids = sorted(all_cpu_ids)
 mid_index = len(sorted_cpu_ids) // 2
-label_a = f"CPU{sorted_cpu_ids[0]}–{sorted_cpu_ids[mid_index - 1]}" if mid_index > 0 else f"CPU{sorted_cpu_ids[0]}"
-label_b = f"CPU{sorted_cpu_ids[mid_index]}–{sorted_cpu_ids[-1]}" if mid_index < len(sorted_cpu_ids) else f"CPU{sorted_cpu_ids[-1]}"
+group_a_ids = sorted_cpu_ids[:mid_index]
+group_b_ids = sorted_cpu_ids[mid_index:]
 
-# ---- Step 5a: Combined plot (latency + temp + freqs) ----
+avg_temps = []
+avg_group_a = []
+avg_group_b = []
+
+for ts in sorted_ts:
+    entry = grouped_data[ts]
+    avg_temps.append(mean(entry['temps']))
+
+    group_a_vals = []
+    group_b_vals = []
+
+    for freqs in entry['cpu_freqs']:
+        a = [freqs[c] for c in group_a_ids if c in freqs]
+        b = [freqs[c] for c in group_b_ids if c in freqs]
+        if a:
+            group_a_vals.append(mean(a) / 1e6)
+        if b:
+            group_b_vals.append(mean(b) / 1e6)
+
+    avg_group_a.append(mean(group_a_vals) if group_a_vals else 0)
+    avg_group_b.append(mean(group_b_vals) if group_b_vals else 0)
+
+# Labeling
+label_a = f"CPU{group_a_ids[0]}–{group_a_ids[-1]}" if group_a_ids else "Group A"
+label_b = f"CPU{group_b_ids[0]}–{group_b_ids[-1]}" if group_b_ids else "Group B"
+
+# ---- Step 6a: Combined plot ----
 fig, axs = plt.subplots(4, 1, figsize=(18, 12), sharex=False)
 
-# Latency (subplot 1)
+# Latency
 for tid in sorted(thread_data.keys()):
     x_vals, y_vals = zip(*thread_data[tid])
     axs[0].plot(x_vals, y_vals, label=f"T{tid}")
 axs[0].set_ylabel("Latency (us)")
 axs[0].set_title("Avg Latency per Thread")
-axs[0].legend(fontsize="x-small", ncol=2)
+axs[0].legend(loc="lower right", fontsize="x-small", ncol=2)
 axs[0].set_xlabel("Iteration (C)")
 axs[0].grid(True)
 
-# Temperature (subplot 2)
+# Temperature
 axs[1].plot(time_axis, avg_temps, color='red')
 axs[1].set_ylabel("Temp (°C)")
 axs[1].set_title("CPU Temperature")
 axs[1].grid(True)
 
-# CPU Group A (subplot 3)
+# CPU Frequencies
 axs[2].plot(time_axis, avg_group_a, color='blue')
 axs[2].set_ylabel("Freq (GHz)")
 axs[2].set_title(f"Avg Frequency {label_a}")
 axs[2].grid(True)
 
-# CPU Group B (subplot 4)
 axs[3].plot(time_axis, avg_group_b, color='green')
 axs[3].set_ylabel("Freq (GHz)")
 axs[3].set_title(f"Avg Frequency {label_b}")
@@ -135,7 +158,7 @@ plt.savefig(output_plot_combined, dpi=150)
 plt.close()
 print(f"Combined plot saved as {output_plot_combined}")
 
-# ---- Step 5b: Latency-only plot ----
+# ---- Step 6b: Latency-only plot ----
 plt.figure(figsize=(10, 6))
 for tid in sorted(thread_data.keys()):
     x_vals, y_vals = zip(*thread_data[tid])
@@ -145,12 +168,12 @@ plt.ylabel("Avg Latency (us)")
 plt.title("Latency Over Time (No Temperature or Frequency)")
 plt.xlim(left=0)
 plt.grid(True)
-plt.legend(loc="upper right", ncol=2, fontsize="small")
+plt.legend(loc="lower right", ncol=2, fontsize="small")
 plt.tight_layout()
 plt.savefig(output_plot_latency_only, dpi=150)
 print(f"Latency-only plot saved as {output_plot_latency_only}")
 
-# ---- Step 6: Combined stats ----
+# ---- Step 7: Combined stats ----
 with open(output_stats, "w") as f:
     f.write("Latency Statistics per Thread (last reported value):\n")
     all_mins, all_maxs, all_avgs = [], [], []
