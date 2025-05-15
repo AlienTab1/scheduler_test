@@ -23,7 +23,7 @@
 # Format: timestamp, starttime, pid, nice, utime, stime
 # ==============================================================================
 
-echo "=== Scheduler Fairness Test with PID/TID Logging ==="
+echo "=== Scheduler Fairness Test with PID Logging ==="
 
 # --- Detect total logical CPUs ---
 cpu_threads=$(grep -c ^processor /proc/cpuinfo)
@@ -62,7 +62,7 @@ nice -n -5 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
 pid_d=$!
 
 # Allow some time for all hackbench groups to spawn their threads
-sleep 0.01
+# sleep 0.01
 
 # --- Collect TIDs (thread IDs) for each group ---
 group_a_pids=$(pgrep -P "$pid_a")
@@ -73,7 +73,7 @@ group_d_pids=$(pgrep -P "$pid_d")
 # Merge all TIDs into one list
 all_pids="$group_a_pids $group_b_pids $group_c_pids $group_d_pids"
 
-echo "# Total TIDs being logged: $(echo "$all_pids" | wc -w)"
+echo "# Total PIDs being logged: $(echo "$all_pids" | wc -w)"
 echo "timestamp,starttime,pid,nice,utime,stime"
 echo "Start logging..."
 

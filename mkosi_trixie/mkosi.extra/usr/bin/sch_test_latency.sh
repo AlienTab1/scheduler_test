@@ -40,7 +40,7 @@ hackbench -g 20 -l 10000 -s 512 -f 25 -T &
 hb_pid=$!
 
 # Give hackbench some time to initialize before measuring latency
-sleep 0.3
+sleep 0.5
 
 # === Launch cyclictest for latency measurement ===
 # --mlockall: lock memory to avoid paging
