@@ -1,149 +1,99 @@
 import re
 import sys
 import os
-from collections import defaultdict
 import matplotlib.pyplot as plt
-import numpy as np
+
 
 def print_help():
-    """Print usage help and exit."""
-    print("Usage: python latency_plot.py <latency_input_file> <temperature_input_file> <output_directory>")
+    print("Usage: python sysbench_parser.py <input_file> <output_directory>")
     sys.exit(1)
 
+
 # ---- Step 1: Parse arguments ----
-if len(sys.argv) != 4:
+if len(sys.argv) != 3:
     print("Error: Missing arguments.\n")
     print_help()
 
-latency_file = sys.argv[1]
-temp_file = sys.argv[2]
-output_dir = sys.argv[3]
+input_file = sys.argv[1]
+output_dir = sys.argv[2]
 
-if not os.path.isfile(latency_file):
-    print(f"Error: Latency file not found: {latency_file}")
-    sys.exit(1)
-
-if not os.path.isfile(temp_file):
-    print(f"Error: Temperature file not found: {temp_file}")
+if not os.path.isfile(input_file):
+    print(f"Error: File not found: {input_file}")
     sys.exit(1)
 
 if not os.path.isdir(output_dir):
     print(f"Error: Output directory not found: {output_dir}")
     sys.exit(1)
 
-# ---- Step 2: Prepare output filenames ----
-basename = os.path.splitext(os.path.basename(latency_file))[0]
-output_plot = os.path.join(output_dir, f"{basename}_latency_temp_plot.png")
-output_plot_latency_only = os.path.join(output_dir, f"{basename}_latency_only_plot.png")
-output_stats = os.path.join(output_dir, f"{basename}_latency_stats.txt")
+basename = os.path.splitext(os.path.basename(input_file))[0]
+output_plot = os.path.join(output_dir, f"{basename}_events_histogram.png")
+output_stats = os.path.join(output_dir, f"{basename}_sysbench_stats.txt")
 
-# ---- Step 3: Parse latency data ----
-with open(latency_file, "r") as file:
-    text = file.read()
+# ---- Step 2: Parse input file ----
+with open(input_file, 'r') as file:
+    content = file.read()
 
-pattern = re.compile(r"T:\s*(\d+).*?C:\s*(\d+).*?Min:\s*(\d+).*?Avg:\s*(\d+).*?Max:\s*(\d+)", re.MULTILINE)
-thread_data = defaultdict(list)
+# Extract thread count
+thread_count_match = re.search(r'Current CPU threads:\s*(\d+)', content)
+thread_count = thread_count_match.group(1) if thread_count_match else "N/A"
 
-for match in pattern.finditer(text):
-    tid = int(match.group(1))
-    c = int(match.group(2))
-    min_v = int(match.group(3))
-    avg = int(match.group(4))
-    max_v = int(match.group(5))
-    if c == 0:
-        continue
-    thread_data[tid].append((c, avg))
+# Append fake separator to ensure last scenario is captured properly
+scenarios = re.findall(r"=== (Scenario .*?) ===(.*?)(?=^===|\Z)", content + "\n===", re.DOTALL | re.MULTILINE)
 
-# ---- Step 4: Parse temperature data ----
-temp_values = []
-with open(temp_file, "r") as f:
-    for line in f:
-        match = re.search(r"CPU_Temperature:\s*(\d+)", line)
-        if match:
-            temp_values.append(int(match.group(1)))
+data = []
+scenario_labels = []
+total_events = []
 
-# ---- Step 5: Determine max X for latency and stretch temp to fit ----
-SKIP_FIRST = 1
-max_c = max(c for samples in thread_data.values() for c, _ in samples)
+for scenario, details in scenarios:
+    time_match = re.search(r'total time:\s+(\d+\.\d+)s', details)
+    events_match = re.search(r'total number of events:\s+(\d+)', details)
+    eps_match = re.search(r'events per second:\s+(\d+\.\d+)', details)
 
-if len(temp_values) > 1:
-    temp_x = np.linspace(0, max_c, len(temp_values))
-else:
-    temp_x = [0]
+    if time_match and events_match and eps_match:
+        total_time = float(time_match.group(1))
+        total_event_count = int(events_match.group(1))
+        eps = float(eps_match.group(1))
 
-# ---- Step 6a: Generate latency + temperature plot ----
-fig, ax1 = plt.subplots(figsize=(10, 6))
+        label = f"{int(total_time)}s"
+        if re.search(r'with .*?background load', scenario, re.IGNORECASE):
+            label += " + bg"
 
-for tid in sorted(thread_data.keys()):
-    if len(thread_data[tid]) > SKIP_FIRST:
-        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])
-        ax1.plot(x_vals, y_vals, label=f"T{tid}")
+        scenario_data = {
+            'scenario': scenario.strip(),
+            'total_time': total_time,
+            'total_events': total_event_count,
+            'events_per_second': eps
+        }
+        data.append(scenario_data)
+        scenario_labels.append(label)
+        total_events.append(total_event_count)
 
-ax1.set_xlabel("Iteration (C)")
-ax1.set_ylabel("Avg Latency (us)")
-ax1.set_xlim(0, max_c)
-ax1.grid(True)
-ax1.legend(loc="upper left", ncol=2, fontsize="small")
+# ---- Step 3: Generate histogram plot ----
+plt.figure(figsize=(10, 6))
+bars = plt.bar(scenario_labels, total_events, color='skyblue')
+plt.xlabel('Test scenario: (test execution time) + (with or without background load)')
+plt.ylabel('Total Number of Events')
+plt.title('Sysbench Total Events per Scenario')
 
-ax2 = ax1.twinx()
-ax2.plot(temp_x, temp_values, color='red', linewidth=1.5, label='Temperature (°C)')
-ax2.set_ylabel("Temperature (°C)", color='red')
-ax2.tick_params(axis='y', labelcolor='red')
+# Custom legend for thread info
+plt.legend([f"Thread count: {thread_count}"], loc="upper left", fontsize="small", frameon=False)
+#plt.xticks(rotation=45, ha='right')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+for bar, value in zip(bars, total_events):
+    plt.text(bar.get_x() + bar.get_width()/2, bar.get_height(), f"{value:,}", 
+             ha='center', va='bottom', fontsize=8, rotation=0)
 
-lines1, labels1 = ax1.get_legend_handles_labels()
-lines2, labels2 = ax2.get_legend_handles_labels()
-ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right', fontsize="small")
-
-plt.title("Latency Over Time with Temperature Overlay")
 plt.tight_layout()
 plt.savefig(output_plot, dpi=150)
 print(f"Chart saved as {output_plot}")
 
-# ---- Step 6b: Generate latency-only plot ----
-plt.figure(figsize=(10, 6))
-for tid in sorted(thread_data.keys()):
-    if len(thread_data[tid]) > SKIP_FIRST:
-        x_vals, y_vals = zip(*thread_data[tid][SKIP_FIRST:])
-        plt.plot(x_vals, y_vals, label=f"T{tid}")
-
-plt.xlabel("Iteration (C)")
-plt.ylabel("Avg Latency (us)")
-plt.title("Latency Over Time (No Temperature)")
-plt.grid(True)
-plt.legend(loc="upper right", ncol=2, fontsize="small")
-plt.tight_layout()
-plt.savefig(output_plot_latency_only, dpi=150)
-print(f"Latency-only chart saved as {output_plot_latency_only}")
-
-# ---- Step 7: Final latency statistics ----
-all_mins = []
-all_maxs = []
-all_avgs = []
-last_tid_values = {}
-
-matches = list(pattern.finditer(text))
-for match in matches:
-    tid = int(match.group(1))
-    c = int(match.group(2))
-    min_v = int(match.group(3))
-    avg = int(match.group(4))
-    max_v = int(match.group(5))
-    if c > 0:
-        last_tid_values[tid] = (min_v, avg, max_v)
-
+# ---- Step 4: Output statistics ----
 with open(output_stats, "w") as f:
-    f.write("Latency Statistics per Thread (final cyclictest report only):\n")
-    for tid in sorted(last_tid_values.keys()):
-        min_val, avg_val, max_val = last_tid_values[tid]
-        f.write(f"T{tid:2d} -> Min: {min_val} us, Max: {max_val} us, Avg: {avg_val:.2f} us\n")
-        all_mins.append(min_val)
-        all_maxs.append(max_val)
-        all_avgs.append(avg_val)
-
-    if all_mins and all_maxs and all_avgs:
-        f.write("\nOverall:\n")
-        f.write(f"Min: {min(all_mins)} us\n")
-        f.write(f"Max: {max(all_maxs)} us\n")
-        f.write(f"Avg: {sum(all_avgs)/len(all_avgs):.2f} us\n")
+    f.write("Sysbench Scenario Statistics:\n")
+    for entry in data:
+        f.write(f"{entry['scenario']}\n")
+        f.write(f"  Total Time: {entry['total_time']} s\n")
+        f.write(f"  Total Events: {entry['total_events']}\n")
+        f.write(f"  Events per Second: {entry['events_per_second']}\n\n")
 
 print(f"Statistics saved as {output_stats}")

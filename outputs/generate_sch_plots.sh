@@ -19,9 +19,8 @@ declare -A parser_map=(
     ["thr"]="throughput_plot.py"
     ["fai"]="fairness_plot.py"
     ["sca"]="scalability_plot.py"
-    #["res"]="responsiveness_plot.py"
     ["ctx"]="contextswitch_plot.py"
-    #["star"]="starvation_plot.py"
+    ["star"]="starvation_plot.py"
 )
 
 # === Process each run directory ===
