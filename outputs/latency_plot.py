@@ -165,7 +165,7 @@ for tid in sorted(thread_data.keys()):
     plt.plot(x_vals, y_vals, label=f"T{tid}")
 plt.xlabel("Iteration (C)")
 plt.ylabel("Avg Latency (us)")
-plt.title("Latency Over Time (No Temperature or Frequency)")
+plt.title("Avg Latency per Thread")
 plt.xlim(left=0)
 plt.grid(True)
 plt.legend(loc="lower right", ncol=2, fontsize="small")
