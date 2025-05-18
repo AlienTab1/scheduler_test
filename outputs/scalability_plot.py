@@ -79,7 +79,7 @@ plt.grid(axis='y', linestyle='--', alpha=0.6)
 for i, bar in enumerate(bars):
     label = f"{total_events[i]}" if total_events[i] is not None else "N/A"
     height = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2, height + 500, label, ha='center', va='bottom', fontsize=10)
+    plt.text(bar.get_x() + bar.get_width()/2, height + 300, label, ha='center', va='bottom', fontsize=10)
 
 plt.tight_layout()
 plt.savefig(plot_path)

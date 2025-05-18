@@ -1,21 +1,21 @@
 Latency Statistics per Thread (last reported value):
-T 0 -> Min: 3407 us, Max: 135367 us, Avg: 6686.00 us
-T 1 -> Min: 3586 us, Max: 104007 us, Avg: 6480.00 us
-T 2 -> Min: 3644 us, Max: 98205 us, Avg: 6830.00 us
-T 3 -> Min: 3513 us, Max: 151415 us, Avg: 7159.00 us
-T 4 -> Min: 3840 us, Max: 241104 us, Avg: 6881.00 us
-T 5 -> Min: 3823 us, Max: 156549 us, Avg: 7126.00 us
-T 6 -> Min: 3372 us, Max: 97992 us, Avg: 7016.00 us
-T 7 -> Min: 3335 us, Max: 105707 us, Avg: 6734.00 us
-T 8 -> Min: 3353 us, Max: 106134 us, Avg: 6542.00 us
-T 9 -> Min: 3826 us, Max: 87569 us, Avg: 6890.00 us
-T10 -> Min: 4133 us, Max: 93080 us, Avg: 6591.00 us
-T11 -> Min: 3689 us, Max: 87211 us, Avg: 6707.00 us
+T 0 -> Min: 3828 ns, Max: 118456 ns, Avg: 6699.00 ns
+T 1 -> Min: 4090 ns, Max: 104007 ns, Avg: 6509.00 ns
+T 2 -> Min: 4119 ns, Max: 98205 ns, Avg: 6860.00 ns
+T 3 -> Min: 4538 ns, Max: 151415 ns, Avg: 7167.00 ns
+T 4 -> Min: 4503 ns, Max: 125711 ns, Avg: 6922.00 ns
+T 5 -> Min: 4556 ns, Max: 156549 ns, Avg: 7152.00 ns
+T 6 -> Min: 4284 ns, Max: 83404 ns, Avg: 7006.00 ns
+T 7 -> Min: 4443 ns, Max: 105707 ns, Avg: 6779.00 ns
+T 8 -> Min: 4310 ns, Max: 106134 ns, Avg: 6534.00 ns
+T 9 -> Min: 4213 ns, Max: 87265 ns, Avg: 6880.00 ns
+T10 -> Min: 4144 ns, Max: 85317 ns, Avg: 6606.00 ns
+T11 -> Min: 4334 ns, Max: 83325 ns, Avg: 6672.00 ns
 
 Overall Latency:
-Min: 3335 us
-Max: 241104 us
-Avg: 6803.50 us
+Min: 3828 ns
+Max: 156549 ns
+Avg: 6815.50 ns
 
 Temperature:
 Min: 49 °C

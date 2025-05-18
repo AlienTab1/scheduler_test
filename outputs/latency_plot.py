@@ -44,13 +44,15 @@ pattern = re.compile(r"T:\s*(\d+).*?C:\s*(\d+).*?Min:\s*(\d+).*?Avg:\s*(\d+).*?M
 thread_data = defaultdict(list)
 last_tid_values = {}
 
+C_THRESHOLD = 200000  # Only consider iterations up to this value
+
 for match in pattern.finditer(text):
     tid = int(match.group(1))
     c = int(match.group(2))
     min_v = int(match.group(3))
     avg = int(match.group(4))
     max_v = int(match.group(5))
-    if c == 0:
+    if c == 0 or c > C_THRESHOLD:
         continue
     thread_data[tid].append((c, avg))
     last_tid_values[tid] = (min_v, avg, max_v)
@@ -127,7 +129,7 @@ fig, axs = plt.subplots(4, 1, figsize=(18, 12), sharex=False)
 for tid in sorted(thread_data.keys()):
     x_vals, y_vals = zip(*thread_data[tid])
     axs[0].plot(x_vals, y_vals, label=f"T{tid}")
-axs[0].set_ylabel("Latency (us)")
+axs[0].set_ylabel("Latency (ns)")
 axs[0].set_title("Avg Latency per Thread")
 axs[0].legend(loc="lower right", fontsize="x-small", ncol=2)
 axs[0].set_xlabel("Iteration (C)")
@@ -164,7 +166,7 @@ for tid in sorted(thread_data.keys()):
     x_vals, y_vals = zip(*thread_data[tid])
     plt.plot(x_vals, y_vals, label=f"T{tid}")
 plt.xlabel("Iteration (C)")
-plt.ylabel("Avg Latency (us)")
+plt.ylabel("Avg Latency (ns)")
 plt.title("Avg Latency per Thread")
 plt.xlim(left=0)
 plt.grid(True)
@@ -179,16 +181,16 @@ with open(output_stats, "w") as f:
     all_mins, all_maxs, all_avgs = [], [], []
     for tid in sorted(last_tid_values.keys()):
         min_val, avg_val, max_val = last_tid_values[tid]
-        f.write(f"T{tid:2d} -> Min: {min_val} us, Max: {max_val} us, Avg: {avg_val:.2f} us\n")
+        f.write(f"T{tid:2d} -> Min: {min_val} ns, Max: {max_val} ns, Avg: {avg_val:.2f} ns\n")
         all_mins.append(min_val)
         all_maxs.append(max_val)
         all_avgs.append(avg_val)
 
     if all_mins:
         f.write("\nOverall Latency:\n")
-        f.write(f"Min: {min(all_mins)} us\n")
-        f.write(f"Max: {max(all_maxs)} us\n")
-        f.write(f"Avg: {sum(all_avgs)/len(all_avgs):.2f} us\n")
+        f.write(f"Min: {min(all_mins)} ns\n")
+        f.write(f"Max: {max(all_maxs)} ns\n")
+        f.write(f"Avg: {sum(all_avgs)/len(all_avgs):.2f} ns\n")
 
     if avg_temps:
         f.write(f"\nTemperature:\nMin: {min(avg_temps)} °C\nMax: {max(avg_temps)} °C\nAvg: {sum(avg_temps)/len(avg_temps):.2f} °C\n")
