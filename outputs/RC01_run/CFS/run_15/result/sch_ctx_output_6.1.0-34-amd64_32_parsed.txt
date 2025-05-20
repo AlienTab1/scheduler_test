@@ -1,0 +1,639 @@
+Parsed nvcswch/s values per thread (Duration: 30s):
+
+Thread_0 (Tgid 1758):
+  Second 0 -> 1.90 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 2 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 1.00 nvcswch/s
+  Second 5 -> 4.00 nvcswch/s
+  Second 6 -> 6.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 1.00 nvcswch/s
+  Second 10 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 1.00 nvcswch/s
+  Second 13 -> 7.00 nvcswch/s
+  Second 14 -> 3.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 16 -> 1.00 nvcswch/s
+  Second 18 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 20 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 24 -> 1.00 nvcswch/s
+  Second 25 -> 1.00 nvcswch/s
+  Second 27 -> 6.00 nvcswch/s
+  Second 28 -> 2.00 nvcswch/s
+  Second 29 -> 1.00 nvcswch/s
+  Total: 47.90 nvcswch/s
+  Average: 1.92 nvcswch/s
+
+Thread_1 (Tgid 1759):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 25 -> 15.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 23.95 nvcswch/s
+  Average: 2.40 nvcswch/s
+
+Thread_2 (Tgid 1760):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 20 -> 9.00 nvcswch/s
+  Second 23 -> 5.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Second 28 -> 6.00 nvcswch/s
+  Second 29 -> 4.00 nvcswch/s
+  Total: 31.95 nvcswch/s
+  Average: 2.66 nvcswch/s
+
+Thread_3 (Tgid 1761):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 4.00 nvcswch/s
+  Second 2 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 13 -> 4.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 18 -> 9.00 nvcswch/s
+  Second 19 -> 9.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 34.95 nvcswch/s
+  Average: 2.69 nvcswch/s
+
+Thread_4 (Tgid 1762):
+  Second 0 -> 4.76 nvcswch/s
+  Second 1 -> 3.00 nvcswch/s
+  Second 2 -> 2.00 nvcswch/s
+  Second 3 -> 6.00 nvcswch/s
+  Second 4 -> 6.00 nvcswch/s
+  Second 5 -> 6.00 nvcswch/s
+  Second 6 -> 5.00 nvcswch/s
+  Second 7 -> 4.00 nvcswch/s
+  Second 8 -> 2.00 nvcswch/s
+  Second 9 -> 2.00 nvcswch/s
+  Second 10 -> 6.00 nvcswch/s
+  Second 11 -> 5.00 nvcswch/s
+  Second 12 -> 7.00 nvcswch/s
+  Second 13 -> 7.00 nvcswch/s
+  Second 14 -> 6.00 nvcswch/s
+  Second 15 -> 6.00 nvcswch/s
+  Second 16 -> 4.00 nvcswch/s
+  Second 17 -> 6.00 nvcswch/s
+  Second 18 -> 5.00 nvcswch/s
+  Second 19 -> 3.00 nvcswch/s
+  Second 20 -> 3.00 nvcswch/s
+  Second 21 -> 1.00 nvcswch/s
+  Second 22 -> 3.00 nvcswch/s
+  Second 23 -> 7.00 nvcswch/s
+  Second 24 -> 3.00 nvcswch/s
+  Second 25 -> 7.00 nvcswch/s
+  Second 26 -> 3.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Second 28 -> 1.00 nvcswch/s
+  Total: 125.76 nvcswch/s
+  Average: 4.34 nvcswch/s
+
+Thread_5 (Tgid 1763):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 18 -> 3.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 11.95 nvcswch/s
+  Average: 1.19 nvcswch/s
+
+Thread_6 (Tgid 1764):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 25 -> 1.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Total: 10.95 nvcswch/s
+  Average: 1.09 nvcswch/s
+
+Thread_7 (Tgid 1765):
+  Second 0 -> 5.71 nvcswch/s
+  Second 1 -> 6.00 nvcswch/s
+  Second 2 -> 7.00 nvcswch/s
+  Second 3 -> 7.00 nvcswch/s
+  Second 4 -> 7.00 nvcswch/s
+  Second 5 -> 7.00 nvcswch/s
+  Second 6 -> 10.00 nvcswch/s
+  Second 7 -> 12.00 nvcswch/s
+  Second 8 -> 7.00 nvcswch/s
+  Second 9 -> 6.00 nvcswch/s
+  Second 10 -> 8.00 nvcswch/s
+  Second 11 -> 8.00 nvcswch/s
+  Second 12 -> 9.00 nvcswch/s
+  Second 13 -> 7.00 nvcswch/s
+  Second 14 -> 8.00 nvcswch/s
+  Second 15 -> 7.00 nvcswch/s
+  Second 16 -> 8.00 nvcswch/s
+  Second 17 -> 7.00 nvcswch/s
+  Second 18 -> 9.00 nvcswch/s
+  Second 19 -> 8.00 nvcswch/s
+  Second 20 -> 8.00 nvcswch/s
+  Second 21 -> 7.00 nvcswch/s
+  Second 22 -> 9.00 nvcswch/s
+  Second 23 -> 8.00 nvcswch/s
+  Second 24 -> 9.00 nvcswch/s
+  Second 25 -> 7.00 nvcswch/s
+  Second 26 -> 8.00 nvcswch/s
+  Second 27 -> 8.00 nvcswch/s
+  Second 28 -> 8.00 nvcswch/s
+  Second 29 -> 6.00 nvcswch/s
+  Total: 231.71 nvcswch/s
+  Average: 7.72 nvcswch/s
+
+Thread_8 (Tgid 1766):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 8.95 nvcswch/s
+  Average: 0.99 nvcswch/s
+
+Thread_9 (Tgid 1767):
+  Second 0 -> 1.90 nvcswch/s
+  Second 1 -> 4.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 14 -> 4.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 17 -> 4.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 26 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 21.90 nvcswch/s
+  Average: 1.82 nvcswch/s
+
+Thread_10 (Tgid 1768):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 8.00 nvcswch/s
+  Second 4 -> 1.00 nvcswch/s
+  Second 6 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 10 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 20 -> 2.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 22.95 nvcswch/s
+  Average: 1.64 nvcswch/s
+
+Thread_11 (Tgid 1769):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 25 -> 1.00 nvcswch/s
+  Second 26 -> 6.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 15.95 nvcswch/s
+  Average: 1.45 nvcswch/s
+
+Thread_12 (Tgid 1770):
+  Second 0 -> 2.86 nvcswch/s
+  Second 1 -> 3.00 nvcswch/s
+  Second 2 -> 2.00 nvcswch/s
+  Second 3 -> 3.00 nvcswch/s
+  Second 4 -> 2.00 nvcswch/s
+  Second 5 -> 2.00 nvcswch/s
+  Second 6 -> 5.00 nvcswch/s
+  Second 7 -> 3.00 nvcswch/s
+  Second 8 -> 2.00 nvcswch/s
+  Second 9 -> 2.00 nvcswch/s
+  Second 10 -> 2.00 nvcswch/s
+  Second 11 -> 3.00 nvcswch/s
+  Second 12 -> 2.00 nvcswch/s
+  Second 13 -> 2.00 nvcswch/s
+  Second 14 -> 3.00 nvcswch/s
+  Second 15 -> 3.00 nvcswch/s
+  Second 16 -> 3.00 nvcswch/s
+  Second 17 -> 2.00 nvcswch/s
+  Second 18 -> 3.00 nvcswch/s
+  Second 19 -> 2.00 nvcswch/s
+  Second 20 -> 3.00 nvcswch/s
+  Second 21 -> 2.00 nvcswch/s
+  Second 22 -> 9.00 nvcswch/s
+  Second 23 -> 3.00 nvcswch/s
+  Second 24 -> 2.00 nvcswch/s
+  Second 25 -> 2.00 nvcswch/s
+  Second 26 -> 2.00 nvcswch/s
+  Second 27 -> 3.00 nvcswch/s
+  Second 28 -> 5.00 nvcswch/s
+  Second 29 -> 2.00 nvcswch/s
+  Total: 84.86 nvcswch/s
+  Average: 2.83 nvcswch/s
+
+Thread_13 (Tgid 1771):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 20 -> 2.00 nvcswch/s
+  Second 21 -> 6.00 nvcswch/s
+  Second 23 -> 7.00 nvcswch/s
+  Second 24 -> 10.00 nvcswch/s
+  Second 26 -> 2.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Total: 35.95 nvcswch/s
+  Average: 2.77 nvcswch/s
+
+Thread_14 (Tgid 1772):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 25 -> 1.00 nvcswch/s
+  Second 26 -> 6.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Total: 16.95 nvcswch/s
+  Average: 1.54 nvcswch/s
+
+Thread_15 (Tgid 1773):
+  Second 0 -> 2.86 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 2 -> 2.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 2.00 nvcswch/s
+  Second 6 -> 2.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 2.00 nvcswch/s
+  Second 10 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 3.00 nvcswch/s
+  Second 14 -> 2.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 16 -> 2.00 nvcswch/s
+  Second 18 -> 2.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 20 -> 2.00 nvcswch/s
+  Second 22 -> 2.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 24 -> 2.00 nvcswch/s
+  Second 26 -> 3.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Second 28 -> 2.00 nvcswch/s
+  Total: 40.86 nvcswch/s
+  Average: 1.78 nvcswch/s
+
+Thread_16 (Tgid 1774):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 10 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 14 -> 3.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 17 -> 3.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 25 -> 1.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Second 28 -> 1.00 nvcswch/s
+  Total: 19.95 nvcswch/s
+  Average: 1.43 nvcswch/s
+
+Thread_17 (Tgid 1775):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 8.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 21 -> 5.00 nvcswch/s
+  Second 22 -> 9.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 29.95 nvcswch/s
+  Average: 2.72 nvcswch/s
+
+Thread_18 (Tgid 1776):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 9.00 nvcswch/s
+  Second 4 -> 1.00 nvcswch/s
+  Second 6 -> 4.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 4.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 24.95 nvcswch/s
+  Average: 2.27 nvcswch/s
+
+Thread_19 (Tgid 1777):
+  Second 0 -> 3.81 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 2 -> 21.00 nvcswch/s
+  Second 3 -> 4.00 nvcswch/s
+  Second 4 -> 13.00 nvcswch/s
+  Second 5 -> 2.00 nvcswch/s
+  Second 6 -> 4.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 16.00 nvcswch/s
+  Second 9 -> 1.00 nvcswch/s
+  Second 10 -> 3.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 2.00 nvcswch/s
+  Second 14 -> 13.00 nvcswch/s
+  Second 15 -> 2.00 nvcswch/s
+  Second 16 -> 3.00 nvcswch/s
+  Second 18 -> 2.00 nvcswch/s
+  Second 19 -> 16.00 nvcswch/s
+  Second 20 -> 9.00 nvcswch/s
+  Second 21 -> 1.00 nvcswch/s
+  Second 22 -> 2.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 24 -> 2.00 nvcswch/s
+  Second 25 -> 13.00 nvcswch/s
+  Second 26 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Second 28 -> 2.00 nvcswch/s
+  Total: 140.81 nvcswch/s
+  Average: 5.22 nvcswch/s
+
+Thread_20 (Tgid 1778):
+  Second 0 -> 4.76 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 3.00 nvcswch/s
+  Second 5 -> 1.00 nvcswch/s
+  Second 7 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 17.76 nvcswch/s
+  Average: 1.61 nvcswch/s
+
+Thread_21 (Tgid 1779):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 7.00 nvcswch/s
+  Second 2 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 8.00 nvcswch/s
+  Second 8 -> 1.00 nvcswch/s
+  Second 9 -> 5.00 nvcswch/s
+  Second 11 -> 13.00 nvcswch/s
+  Second 12 -> 6.00 nvcswch/s
+  Second 13 -> 1.00 nvcswch/s
+  Second 14 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 18 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 2.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Second 28 -> 1.00 nvcswch/s
+  Second 29 -> 1.00 nvcswch/s
+  Total: 52.95 nvcswch/s
+  Average: 2.94 nvcswch/s
+
+Thread_22 (Tgid 1780):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 3.00 nvcswch/s
+  Second 2 -> 2.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 2.00 nvcswch/s
+  Second 8 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 15.95 nvcswch/s
+  Average: 1.45 nvcswch/s
+
+Thread_23 (Tgid 1781):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 5.00 nvcswch/s
+  Second 27 -> 12.00 nvcswch/s
+  Second 28 -> 3.00 nvcswch/s
+  Total: 26.95 nvcswch/s
+  Average: 2.69 nvcswch/s
+
+Thread_24 (Tgid 1782):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 13.00 nvcswch/s
+  Second 10 -> 10.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 4.00 nvcswch/s
+  Second 14 -> 1.00 nvcswch/s
+  Second 15 -> 6.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 41.95 nvcswch/s
+  Average: 3.23 nvcswch/s
+
+Thread_25 (Tgid 1783):
+  Second 0 -> 2.86 nvcswch/s
+  Second 1 -> 6.00 nvcswch/s
+  Second 2 -> 4.00 nvcswch/s
+  Second 3 -> 3.00 nvcswch/s
+  Second 4 -> 1.00 nvcswch/s
+  Second 6 -> 3.00 nvcswch/s
+  Second 7 -> 7.00 nvcswch/s
+  Second 8 -> 5.00 nvcswch/s
+  Second 9 -> 6.00 nvcswch/s
+  Second 10 -> 4.00 nvcswch/s
+  Second 11 -> 2.00 nvcswch/s
+  Second 12 -> 1.00 nvcswch/s
+  Second 14 -> 2.00 nvcswch/s
+  Second 15 -> 4.00 nvcswch/s
+  Second 16 -> 3.00 nvcswch/s
+  Second 17 -> 3.00 nvcswch/s
+  Second 18 -> 3.00 nvcswch/s
+  Second 19 -> 7.00 nvcswch/s
+  Second 20 -> 7.00 nvcswch/s
+  Second 21 -> 8.00 nvcswch/s
+  Second 22 -> 6.00 nvcswch/s
+  Second 23 -> 3.00 nvcswch/s
+  Second 24 -> 6.00 nvcswch/s
+  Second 25 -> 5.00 nvcswch/s
+  Second 26 -> 15.00 nvcswch/s
+  Second 27 -> 2.00 nvcswch/s
+  Second 28 -> 3.00 nvcswch/s
+  Total: 121.86 nvcswch/s
+  Average: 4.51 nvcswch/s
+
+Thread_26 (Tgid 1784):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 2.00 nvcswch/s
+  Second 3 -> 2.00 nvcswch/s
+  Second 5 -> 1.00 nvcswch/s
+  Second 7 -> 2.00 nvcswch/s
+  Second 10 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 1.00 nvcswch/s
+  Second 14 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 16 -> 1.00 nvcswch/s
+  Second 18 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 17.95 nvcswch/s
+  Average: 1.20 nvcswch/s
+
+Thread_27 (Tgid 1785):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 2.00 nvcswch/s
+  Second 7 -> 3.00 nvcswch/s
+  Second 9 -> 3.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 16 -> 3.00 nvcswch/s
+  Second 17 -> 5.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 23.95 nvcswch/s
+  Average: 1.84 nvcswch/s
+
+Thread_28 (Tgid 1786):
+  Second 0 -> 6.67 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 2 -> 7.00 nvcswch/s
+  Second 3 -> 8.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 1.00 nvcswch/s
+  Second 9 -> 5.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 14 -> 3.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 26 -> 1.00 nvcswch/s
+  Second 27 -> 6.00 nvcswch/s
+  Second 28 -> 7.00 nvcswch/s
+  Second 29 -> 6.00 nvcswch/s
+  Total: 56.67 nvcswch/s
+  Average: 3.54 nvcswch/s
+
+Thread_29 (Tgid 1787):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 2 -> 4.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 4 -> 11.00 nvcswch/s
+  Second 5 -> 7.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 15 -> 3.00 nvcswch/s
+  Second 16 -> 10.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 42.95 nvcswch/s
+  Average: 3.30 nvcswch/s
+
+Thread_30 (Tgid 1788):
+  Second 0 -> 0.95 nvcswch/s
+  Second 1 -> 1.00 nvcswch/s
+  Second 3 -> 1.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 4.00 nvcswch/s
+  Second 13 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 19 -> 7.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Second 29 -> 10.00 nvcswch/s
+  Total: 29.95 nvcswch/s
+  Average: 2.50 nvcswch/s
+
+Thread_31 (Tgid 1789):
+  Second 0 -> 2.86 nvcswch/s
+  Second 1 -> 2.00 nvcswch/s
+  Second 2 -> 3.00 nvcswch/s
+  Second 3 -> 2.00 nvcswch/s
+  Second 4 -> 3.00 nvcswch/s
+  Second 6 -> 2.00 nvcswch/s
+  Second 7 -> 1.00 nvcswch/s
+  Second 8 -> 7.00 nvcswch/s
+  Second 9 -> 1.00 nvcswch/s
+  Second 10 -> 2.00 nvcswch/s
+  Second 11 -> 1.00 nvcswch/s
+  Second 12 -> 1.00 nvcswch/s
+  Second 14 -> 1.00 nvcswch/s
+  Second 15 -> 1.00 nvcswch/s
+  Second 16 -> 1.00 nvcswch/s
+  Second 18 -> 1.00 nvcswch/s
+  Second 19 -> 1.00 nvcswch/s
+  Second 23 -> 1.00 nvcswch/s
+  Second 27 -> 1.00 nvcswch/s
+  Total: 34.86 nvcswch/s
+  Average: 1.83 nvcswch/s
+
+--- Overall Statistics ---
+Total CS across all threads: 1466.90 cswch/s
+Average per thread: 2.54 cswch/s
+Peak context switch rate (max nvcswch/s): 21.00
+Standard deviation of per-thread averages: 1.40
+Thread avg max/min ratio (imbalance): 7.77

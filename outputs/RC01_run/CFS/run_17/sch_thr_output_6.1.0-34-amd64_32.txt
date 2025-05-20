@@ -1,0 +1,135 @@
+Current logical CPUs: 32
+
+=== Scenario 1: Sysbench (32 threads, 30s, no background load) ===
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 32
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 91348.93
+
+General statistics:
+    total time:                          30.0003s
+    total number of events:              2740530
+
+Latency (ms):
+         min:                                    0.18
+         avg:                                    0.35
+         max:                                   16.71
+         95th percentile:                        0.35
+         sum:                               959413.98
+
+Threads fairness:
+    events (avg/stddev):           85641.5625/602.41
+    execution time (avg/stddev):   29.9817/0.01
+
+
+=== Scenario 2: Sysbench (32 threads, 30s, with stress-ng background load) ===
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 32
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 55139.68
+
+General statistics:
+    total time:                          30.0120s
+    total number of events:              1654890
+
+Latency (ms):
+         min:                                    0.20
+         avg:                                    0.58
+         max:                                   56.23
+         95th percentile:                        0.38
+         sum:                               959110.80
+
+Threads fairness:
+    events (avg/stddev):           51715.3125/6550.51
+    execution time (avg/stddev):   29.9722/0.02
+
+
+=== Scenario 3: Sysbench (32 threads, 100s, no background load) ===
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 32
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 91235.00
+
+General statistics:
+    total time:                          100.0004s
+    total number of events:              9123572
+
+Latency (ms):
+         min:                                    0.18
+         avg:                                    0.35
+         max:                                   28.34
+         95th percentile:                        0.35
+         sum:                              3198561.17
+
+Threads fairness:
+    events (avg/stddev):           285111.6250/285.33
+    execution time (avg/stddev):   99.9550/0.00
+
+
+=== Scenario 4: Sysbench (32 threads, 100s, with stress-ng background load) ===
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 32
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second: 55269.56
+
+General statistics:
+    total time:                          100.0162s
+    total number of events:              5527875
+
+Latency (ms):
+         min:                                    0.20
+         avg:                                    0.58
+         max:                                   60.30
+         95th percentile:                        0.39
+         sum:                              3198000.15
+
+Threads fairness:
+    events (avg/stddev):           172746.0938/13597.79
+    execution time (avg/stddev):   99.9375/0.02
+
+
+=== Throughput tests completed ===

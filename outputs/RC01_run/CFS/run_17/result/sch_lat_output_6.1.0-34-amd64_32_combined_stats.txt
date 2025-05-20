@@ -1,0 +1,47 @@
+Latency Statistics per Thread (last reported value):
+T 0 -> Min: 2700 ns, Max: 153923 ns, Avg: 5398.00 ns
+T 1 -> Min: 2554 ns, Max: 70885 ns, Avg: 5131.00 ns
+T 2 -> Min: 2789 ns, Max: 56204 ns, Avg: 5445.00 ns
+T 3 -> Min: 2733 ns, Max: 47935 ns, Avg: 5074.00 ns
+T 4 -> Min: 2516 ns, Max: 51613 ns, Avg: 5119.00 ns
+T 5 -> Min: 2639 ns, Max: 76641 ns, Avg: 5341.00 ns
+T 6 -> Min: 2520 ns, Max: 52782 ns, Avg: 4872.00 ns
+T 7 -> Min: 2675 ns, Max: 57669 ns, Avg: 5324.00 ns
+T 8 -> Min: 2909 ns, Max: 83879 ns, Avg: 5358.00 ns
+T 9 -> Min: 3161 ns, Max: 53672 ns, Avg: 5323.00 ns
+T10 -> Min: 2607 ns, Max: 53342 ns, Avg: 4996.00 ns
+T11 -> Min: 2801 ns, Max: 55154 ns, Avg: 5387.00 ns
+T12 -> Min: 2725 ns, Max: 56949 ns, Avg: 5284.00 ns
+T13 -> Min: 2753 ns, Max: 58282 ns, Avg: 4753.00 ns
+T14 -> Min: 2755 ns, Max: 51411 ns, Avg: 5205.00 ns
+T15 -> Min: 2851 ns, Max: 52662 ns, Avg: 5185.00 ns
+T16 -> Min: 2926 ns, Max: 61671 ns, Avg: 5192.00 ns
+T17 -> Min: 2638 ns, Max: 60976 ns, Avg: 5344.00 ns
+T18 -> Min: 2564 ns, Max: 88818 ns, Avg: 4736.00 ns
+T19 -> Min: 2888 ns, Max: 90826 ns, Avg: 5529.00 ns
+T20 -> Min: 2917 ns, Max: 103067 ns, Avg: 5402.00 ns
+T21 -> Min: 3035 ns, Max: 51522 ns, Avg: 5439.00 ns
+T22 -> Min: 2350 ns, Max: 51692 ns, Avg: 5385.00 ns
+T23 -> Min: 3094 ns, Max: 54792 ns, Avg: 5237.00 ns
+T24 -> Min: 3155 ns, Max: 50783 ns, Avg: 5493.00 ns
+T25 -> Min: 3047 ns, Max: 50499 ns, Avg: 5254.00 ns
+T26 -> Min: 3085 ns, Max: 51291 ns, Avg: 5355.00 ns
+T27 -> Min: 2525 ns, Max: 47357 ns, Avg: 4733.00 ns
+T28 -> Min: 2749 ns, Max: 49315 ns, Avg: 4965.00 ns
+T29 -> Min: 3030 ns, Max: 53944 ns, Avg: 5498.00 ns
+T30 -> Min: 3041 ns, Max: 54067 ns, Avg: 5387.00 ns
+T31 -> Min: 3048 ns, Max: 79189 ns, Avg: 5764.00 ns
+
+Overall Latency:
+Min: 2350 ns
+Max: 153923 ns
+Avg: 5247.12 ns
+
+Temperature:
+Min: 49 °C
+Max: 63 °C
+Avg: 61.42 °C
+
+CPU Frequencies (GHz):
+CPU0–15 Avg: 4.30 GHz
+CPU16–31 Avg: 4.08 GHz

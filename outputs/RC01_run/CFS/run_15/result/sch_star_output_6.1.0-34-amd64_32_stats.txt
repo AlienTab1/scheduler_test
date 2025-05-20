@@ -1,0 +1,23 @@
+Starvation Test Summary Statistics
+=================================
+
+Logical CPUs: 32
+CLK_TCK: 100
+Sample Count: 398
+Unique PIDs (seen in samples): 118
+Total PIDs declared in file: 525
+
+Nice Value = -10:
+  Count: 102
+  Avg CPU Time: 1.258 s
+  Min CPU Time: 1.000 s
+  Max CPU Time: 1.450 s
+  Std Dev: 0.100 s
+
+Nice Value = 19:
+  Count: 16
+  Avg CPU Time: 0.696 s
+  Min CPU Time: 0.640 s
+  Max CPU Time: 0.770 s
+  Std Dev: 0.042 s
+
