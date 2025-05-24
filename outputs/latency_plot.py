@@ -145,11 +145,13 @@ axs[1].grid(True)
 axs[2].plot(time_axis, avg_group_a, color='blue')
 axs[2].set_ylabel("Freq (GHz)")
 axs[2].set_title(f"Avg Frequency {label_a}")
+#axs[2].set_ylim(3.8, 4.6)  # <--- set fixed Y-axis range
 axs[2].grid(True)
 
 axs[3].plot(time_axis, avg_group_b, color='green')
 axs[3].set_ylabel("Freq (GHz)")
 axs[3].set_title(f"Avg Frequency {label_b}")
+#axs[3].set_ylim(3.8, 4.6)  # <--- set fixed Y-axis range
 axs[3].set_xlabel("Time (s)")
 axs[3].grid(True)
 
@@ -170,7 +172,7 @@ plt.ylabel("Avg Latency (ns)")
 plt.title("Avg Latency per Thread")
 plt.xlim(left=0)
 plt.grid(True)
-plt.legend(loc="lower right", ncol=2, fontsize="small")
+plt.legend(loc="upper right", ncol=2, fontsize="small")
 plt.tight_layout()
 plt.savefig(output_plot_latency_only, dpi=150)
 print(f"Latency-only plot saved as {output_plot_latency_only}")
