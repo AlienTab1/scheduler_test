@@ -18,7 +18,7 @@
 # - bash, `hackbench`, `pgrep`, `/proc` access
 #
 # Usage:
-#   ./sch_test_fairness.sh > fairness_log.csv
+#   ./sch_test_fairness.sh > fairness_log.txt
 #
 # Format: timestamp, starttime, pid, nice, utime, stime
 # ==============================================================================
@@ -63,9 +63,6 @@ echo -e "\n# Starting Group D (nice -5)"
 nice -n -5 hackbench -s $BYTES -l $LOOPS -g $groups_per_hackbench -f $FDS -P &
 pid_d=$!
 
-# Allow some time for all hackbench groups to spawn their threads
-sleep 0.01
-
 # --- Collect TIDs (thread IDs) for each group ---
 group_a_pids=$(pgrep -P "$pid_a")
 group_b_pids=$(pgrep -P "$pid_b")
@@ -73,7 +70,7 @@ group_c_pids=$(pgrep -P "$pid_c")
 group_d_pids=$(pgrep -P "$pid_d")
 
 # Merge all TIDs into one list
-all_pids+="$$group_c_pids $group_d_pids"
+all_pids+="$group_a_pids $group_b_pids $group_c_pids $group_d_pids"
 
 echo "Group A: $(echo "$group_a_pids"| wc -w)"
 echo "Group B: $(echo "$group_b_pids"| wc -w)"
@@ -87,14 +84,14 @@ echo "Start logging..."
 # === Logging Loop ===
 # Continue logging while any of the four hackbench groups is still alive
 while kill -0 "$pid_a" 2>/dev/null || kill -0 "$pid_b" 2>/dev/null || kill -0 "$pid_c" 2>/dev/null || kill -0 "$pid_d" 2>/dev/null; do
-    #timestamp=$(date +%s.%N)  # Nanosecond-resolution timestamp
+    timestamp=$(date +%s.%N)  # Nanosecond-resolution timestamp
 
     # Collect runtime statistics from each thread still alive
     for pid in $all_pids; do
         if [[ -r /proc/$pid/stat ]]; then
             stat_line=$(< /proc/$pid/stat)
             fields=($stat_line)
-            #echo "$timestamp,${fields[21]},$pid,${fields[18]},${fields[13]},${fields[14]}"
+            echo "$timestamp,${fields[21]},$pid,${fields[18]},${fields[13]},${fields[14]}"
         fi
     done
 

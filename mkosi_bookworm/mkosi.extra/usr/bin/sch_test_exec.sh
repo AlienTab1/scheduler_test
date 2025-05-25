@@ -17,6 +17,7 @@
 # - Test scripts must be available in $PATH and match keys in `test_map`
 # - CPU temperature logger: `sch_test_cpu_temp.sh`
 # - Environment info script: `sch_test_env_info.sh`
+# - Environment init script: `sch_test_env_init.sh`
 #
 # Example Usage:
 #   ./sch_test_runner.sh --loops=3 --tests=lat,thr
@@ -37,6 +38,11 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     echo "        star  = starvation detection"
     exit 0
 fi
+
+# === System initialization ===
+sch_test_env_init.sh
+
+sleep 1
 
 # === Configuration ===
 threads=$(grep -c ^processor /proc/cpuinfo)      # Detect number of logical CPUs 

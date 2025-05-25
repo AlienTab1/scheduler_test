@@ -1,12 +1,25 @@
 #!/bin/bash
 
 # ==============================================================================
-# Scheduler Starvation Test with PID Logging
+# Scheduler Starvation Detection Test with PID Logging
 # ------------------------------------------------------------------------------
-# Launches high-priority CPU-bound tasks and a few low-priority "victim" tasks.
-# Logs each process's CPU usage to detect if low-priority tasks are starved.
+# This script evaluates whether low-priority tasks are starved by high-priority
+# CPU-bound workloads under Linux schedulers.
 #
-# Output: CSV log to stdout
+# The script:
+# - Launches a high-priority `hackbench` group (nice -10) to saturate the CPU
+# - Starts a small low-priority group (nice 19) to simulate starvation victims
+# - Periodically logs runtime stats from /proc/<pid>/stat for all tasks
+#
+# Output: CSV-formatted log showing timestamped user/system CPU time and nice
+#         levels for each process.
+#
+# Requirements:
+# - bash, `hackbench`, `pgrep`, `/proc` access
+#
+# Usage:
+#   ./sch_test_starvation.sh > starvation_log.txt
+#
 # Format: timestamp, starttime, pid, nice, utime, stime
 # ==============================================================================
 

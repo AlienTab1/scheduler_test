@@ -1,11 +1,26 @@
 #!/bin/bash
 
-# ==============================================
-# Scheduler Context Switching Test using pidstat
-# ----------------------------------------------
-# This script uses `pidstat` to measure voluntary and non-voluntary
-# context switches per thread while the system is under load using `stress-ng`.
-# ==============================================
+# ==============================================================================
+# Scheduler Context Switching Test with pidstat and stress-ng
+# ------------------------------------------------------------------------------
+# This script evaluates per-thread context switch behavior on a loaded system
+# by combining `stress-ng` for CPU stress and `pidstat` for scheduling stats.
+#
+# The script:
+# - Detects the number of available logical CPUs
+# - Launches `stress-ng` with matching load to saturate the CPU
+# - Uses `pidstat -w -t` to monitor voluntary and involuntary context switches
+#   for each thread during the test interval
+#
+# Output: Context switch metrics (stdout) for runtime analysis
+#
+# Requirements:
+# - bash, `stress-ng`, `pidstat` (part of sysstat package)
+#
+# Usage:
+#   ./sch_test_context_switch.sh > context_switch_log.txt
+#
+# ==============================================================================
 
 # Determine the number of logical CPUs available on the system
 threads=$(grep -c ^processor /proc/cpuinfo)
@@ -24,7 +39,7 @@ run_pidstat_test() {
     echo ">>> Measuring per-thread context switches with pidstat -w -t"
 
     # Launch stress-ng in the background to generate CPU load
-    # We add +3 seconds to make sure stress-ng runs slightly longer
+    # Add +3 seconds to make sure stress-ng runs slightly longer
     # than pidstat to guarantee full coverage of the sampling window.
     echo "Starting stress-ng again for detailed tracking..."
     stress-ng --cpu "$threads" --timeout "$(($duration+3))" --quiet &
@@ -48,7 +63,6 @@ run_pidstat_test() {
 }
 
 # === Run the actual test ===
-
 run_pidstat_test
 
 # Final message to indicate the test has ended

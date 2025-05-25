@@ -5,7 +5,7 @@ Logical CPUs: 32
 CLK_TCK: 100
 
 Nice = -5:
-  Count: 240
+  Count: 384
   Avg CPU Time: 0.77 s
   Median CPU Time: 0.76 s
   Std Dev: 0.03 s
