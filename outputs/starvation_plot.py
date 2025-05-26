@@ -104,7 +104,7 @@ custom_lines = [
 ]
 plt.legend(handles=custom_lines)
 plt.tight_layout()
-plt.savefig(plot_progress_path)
+plt.savefig(plot_progress_path, transparent=False)
 plt.close()
 
 # ------------------------- Plot Boxplot by Nice -------------------------
@@ -118,7 +118,7 @@ plt.xlabel("Nice Value")
 plt.ylabel("CPU Time (seconds)")
 plt.grid(axis='y', linestyle='--', alpha=0.5)
 plt.tight_layout()
-plt.savefig(plot_boxplot_path)
+plt.savefig(plot_boxplot_path, transparent=False)
 plt.close()
 
 # ------------------------- Write Summary Statistics -------------------------

@@ -11,7 +11,7 @@
 # of logical CPUs available, if not already included.
 #
 # Requirements:
-# - sysbench installed (`apt install sysbench` on Debian-based systems)
+# - sysbench installed 
 #
 # Usage:
 #   ./sch_test_scalability.sh > scalability_results.txt
